@@ -21,7 +21,9 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: {
+        "css/app.css": /^(semantic\/dist)/
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -32,7 +34,7 @@ exports.config = {
     // This option sets where we should place non-css and non-js assets in.
     // By default, we set this to "/web/static/assets". Files in this directory
     // will be copied to `paths.public`, which is "priv/static" by default.
-    assets: /^(web\/static\/assets)/
+    assets: /^(semantic\/dist\/assets)/
   },
 
   // Phoenix paths configuration
@@ -40,6 +42,8 @@ exports.config = {
     // Dependencies and current project directories to watch
     watched: [
       "web/static",
+      "semantic/dist",
+      "semantic/src/theme.config",
       "test/static"
     ],
 
