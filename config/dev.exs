@@ -35,8 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :couchjitsu_track, CouchjitsuTrack.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "taylonr",
+  password: "",
   database: "couchjitsu_track_dev",
   hostname: "localhost",
   pool_size: 10
