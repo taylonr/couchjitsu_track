@@ -49,7 +49,6 @@ gulpConfig = (!userConfig)
 // adds calculated values
 config.addDerivedValues(gulpConfig);
 
-gulpConfig.paths.assets.packaged = '../themes';
 
 /*******************************
              Export
