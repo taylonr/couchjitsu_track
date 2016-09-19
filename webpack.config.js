@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 
@@ -29,7 +30,12 @@ module.exports = {
     new ExtractTextPlugin("css/app.css"),
     new CopyWebpackPlugin([
       {from: './semantic/dist/assets', to: 'assets'}
-    ])
+    ]),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery"
+    })
   ],
 
   resolve: {
