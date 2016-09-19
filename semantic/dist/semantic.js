@@ -1,5 +1,5 @@
  /*
- * # Semantic UI - 2.2.2
+ * # Semantic UI - 2.2.4
  * https://github.com/Semantic-Org/Semantic-UI
  * http://www.semantic-ui.com/
  *
@@ -9,7 +9,7 @@
  *
  */
 /*!
- * # Semantic UI 2.2.2 - Site
+ * # Semantic UI 2.2.4 - Site
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -497,7 +497,7 @@ $.extend($.expr[ ":" ], {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - Form Validation
+ * # Semantic UI 2.2.4 - Form Validation
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -850,10 +850,13 @@ $.fn.form = function(parameters) {
 
         get: {
           ancillaryValue: function(rule) {
-            if(!rule.type || !module.is.bracketedRule(rule)) {
+            if(!rule.type || (!rule.value && !module.is.bracketedRule(rule))) {
               return false;
             }
-            return rule.type.match(settings.regExp.bracket)[1] + '';
+            return (rule.value !== undefined)
+              ? rule.value
+              : rule.type.match(settings.regExp.bracket)[1] + ''
+            ;
           },
           ruleName: function(rule) {
             if( module.is.bracketedRule(rule) ) {
@@ -1705,6 +1708,9 @@ $.fn.form.settings = {
 
     // matches specified regExp
     regExp: function(value, regExp) {
+      if(regExp instanceof RegExp) {
+        return value.match(regExp);
+      }
       var
         regExpParts = regExp.match($.fn.form.settings.regExp.flags),
         flags
@@ -2050,7 +2056,7 @@ $.fn.form.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - Checkbox
+ * # Semantic UI 2.2.4 - Checkbox
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -2882,7 +2888,7 @@ $.fn.checkbox.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - Dimmer
+ * # Semantic UI 2.2.4 - Dimmer
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -3591,7 +3597,7 @@ $.fn.dimmer.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - Dropdown
+ * # Semantic UI 2.2.4 - Dropdown
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -3746,8 +3752,8 @@ $.fn.dropdown = function(parameters) {
             }
           },
           selectObserver: function() {
-            if(menuObserver) {
-              menuObserver.disconnect();
+            if(selectObserver) {
+              selectObserver.disconnect();
             }
           }
         },
@@ -4550,7 +4556,7 @@ $.fn.dropdown = function(parameters) {
               pageLostFocus = (document.activeElement === this);
               if(!willRefocus) {
                 if(!itemActivated && !pageLostFocus) {
-                  if(settings.forceSelection && module.has.query()) {
+                  if(settings.forceSelection) {
                     module.forceSelection();
                   }
                   module.hide();
@@ -4562,7 +4568,6 @@ $.fn.dropdown = function(parameters) {
           icon: {
             click: function(event) {
               module.toggle();
-              event.stopPropagation();
             }
           },
           text: {
@@ -4626,7 +4631,7 @@ $.fn.dropdown = function(parameters) {
                   ? module.show
                   : module.toggle
               ;
-              if(module.is.bubbledLabelClick(event)) {
+              if(module.is.bubbledLabelClick(event) || module.is.bubbledIconClick(event)) {
                 return;
               }
               if( module.determine.eventOnElement(event, toggleBehavior) ) {
@@ -5007,8 +5012,7 @@ $.fn.dropdown = function(parameters) {
                     ;
                     module.set.scrollPosition($nextItem);
                     if(settings.selectOnKeydown && module.is.single()) {
-                      module.set.activeItem($nextItem);
-                      module.set.selected(module.get.choiceValue($nextItem), $nextItem);
+                      module.set.selectedItem($nextItem);
                     }
                   }
                   event.preventDefault();
@@ -5147,8 +5151,19 @@ $.fn.dropdown = function(parameters) {
           },
 
           select: function(text, value, element) {
-            // mimics action.activate but does not select text
-            module.action.activate.call(element);
+            value = (value !== undefined)
+              ? value
+              : text
+            ;
+            if( module.can.activate( $(element) ) ) {
+              module.set.value(value, $(element));
+              if(module.is.multiple() && !module.is.allFiltered()) {
+                return;
+              }
+              else {
+                module.hideAndClear();
+              }
+            }
           },
 
           combo: function(text, value, element) {
@@ -5664,7 +5679,7 @@ $.fn.dropdown = function(parameters) {
         },
 
         clear: function() {
-          if(module.is.multiple()) {
+          if(module.is.multiple() && settings.useLabels) {
             module.remove.labels();
           }
           else {
@@ -5800,6 +5815,12 @@ $.fn.dropdown = function(parameters) {
               $item.addClass(className.active);
             }
           },
+          partialSearch: function(text) {
+            var
+              length = module.get.query().length
+            ;
+            $search.val( text.substr(0 , length));
+          },
           scrollPosition: function($item, forceScroll) {
             var
               edgeTolerance = 5,
@@ -5871,10 +5892,16 @@ $.fn.dropdown = function(parameters) {
             }
           },
           selectedItem: function($item) {
+            var
+              value = module.get.choiceValue($item),
+              text  = module.get.choiceText($item, false)
+            ;
             module.debug('Setting user selection to item', $item);
             module.remove.activeItem();
+            module.set.partialSearch(text);
             module.set.activeItem($item);
-            module.set.selected(module.get.choiceValue($item), $item);
+            module.set.selected(value, $item);
+            module.set.text(text);
           },
           selectedLetter: function(letter) {
             var
@@ -6571,6 +6598,9 @@ $.fn.dropdown = function(parameters) {
           },
           bubbledLabelClick: function(event) {
             return $(event.target).is('select, input') && $module.closest('label').length > 0;
+          },
+          bubbledIconClick: function(event) {
+            return $(event.target).closest($icon).length > 0;
           },
           alreadySetup: function() {
             return ($module.is('select') && $module.parent(selector.dropdown).length > 0  && $module.prev().length === 0);
@@ -7309,7 +7339,7 @@ $.fn.dropdown.settings.templates = {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - Modal
+ * # Semantic UI 2.2.4 - Modal
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -7655,7 +7685,9 @@ $.fn.modal = function(parameters) {
                     useFailSafe : true,
                     onComplete : function() {
                       settings.onVisible.apply(element);
-                      module.add.keyboardShortcuts();
+                      if(settings.keyboardShortcuts) {
+                        module.add.keyboardShortcuts();
+                      }
                       module.save.focus();
                       module.set.active();
                       if(settings.autofocus) {
@@ -7701,7 +7733,9 @@ $.fn.modal = function(parameters) {
                     if(!module.others.active() && !keepDimmed) {
                       module.hideDimmer();
                     }
-                    module.remove.keyboardShortcuts();
+                    if(settings.keyboardShortcuts) {
+                      module.remove.keyboardShortcuts();
+                    }
                   },
                   onComplete : function() {
                     settings.onHidden.call(element);
@@ -7885,7 +7919,7 @@ $.fn.modal = function(parameters) {
         set: {
           autofocus: function() {
             var
-              $inputs    = $module.find(':input').filter(':visible'),
+              $inputs    = $module.find('[tabindex], :input').filter(':visible'),
               $autofocus = $inputs.filter('[autofocus]'),
               $input     = ($autofocus.length > 0)
                 ? $autofocus.first()
@@ -8164,6 +8198,8 @@ $.fn.modal.settings = {
     useCSS   : true
   },
 
+  // whether to use keyboard shortcuts
+  keyboardShortcuts: true,
 
   context    : 'body',
 
@@ -8217,7 +8253,7 @@ $.fn.modal.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - Search
+ * # Semantic UI 2.2.4 - Search
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -9616,7 +9652,7 @@ $.fn.search.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - Transition
+ * # Semantic UI 2.2.4 - Transition
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -10162,7 +10198,6 @@ $.fn.transition = function() {
                 animation : animation
               });
             }
-            return $.fn.transition.settings;
           },
           animationClass: function(animation) {
             var
@@ -10707,7 +10742,7 @@ $.fn.transition.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - API
+ * # Semantic UI 2.2.4 - API
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -11875,7 +11910,7 @@ $.api.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - State
+ * # Semantic UI 2.2.4 - State
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -12584,7 +12619,7 @@ $.fn.state.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.2 - Visibility
+ * # Semantic UI 2.2.4 - Visibility
  * http://github.com/semantic-org/semantic-ui/
  *
  *
