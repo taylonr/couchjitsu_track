@@ -12,17 +12,6 @@
   </head>
 
   <body>
-      <div class='ui inverted menu'>
-        <div class='item'>
-          <i class='clock icon'></i>
-          Test
-        </div>
-      </div>
-      <span class="logo"></span>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
       <main class='ui container' role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>

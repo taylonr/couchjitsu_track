@@ -1,3 +1,28 @@
-<div class='ui segment'>
-  Couchjitsu tracker
+<div class="ui feed">
+  <h2 class="ui center aligned dividing header">
+    October 8
+  </h2>
+  <div class="event">
+    <div class="content">
+      <div class="summary">
+        <a>Technique</a>
+        <div class="date">
+          1 hr
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="event">
+    <div class="content">
+      <div class="summary">
+        <a>Sparring</a>
+        <div class="date">
+          1 hr
+        </div>
+        <div class="extra text">
+          Landed my first omoplata
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

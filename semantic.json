@@ -49,7 +49,8 @@
     "api",
     "form",
     "state",
-    "visibility"
+    "visibility",
+    "feed"
   ],
   "version": "2.2.4"
 }
