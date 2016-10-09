@@ -1,28 +1,10 @@
-<div class="ui feed">
-  <h2 class="ui center aligned dividing header">
-    October 8
-  </h2>
-  <div class="event">
-    <div class="content">
-      <div class="summary">
-        <a>Technique</a>
-        <div class="date">
-          1 hr
-        </div>
-      </div>
-    </div>
+<%= for event <- events @conn do %>
+  <div class="ui feed">
+    <h2 class="ui center aligned dividing header">
+      <%= event.date %>
+    </h2>
+    <%= for item <- events event do %>
+      <%= render "event.html", e: item %>
+    <% end %>
   </div>
-  <div class="event">
-    <div class="content">
-      <div class="summary">
-        <a>Sparring</a>
-        <div class="date">
-          1 hr
-        </div>
-        <div class="extra text">
-          Landed my first omoplata
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<% end %>

@@ -1,0 +1,15 @@
+<div class="event">
+    <div class="content">
+        <div class="summary">
+            <a><%= @e.name %></a>
+            <div class="date">
+                <%= @e.time %>
+            </div>
+            <%= if @e[:notes] do %>
+                <div class="extra text">
+                    <%= @e.notes %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
