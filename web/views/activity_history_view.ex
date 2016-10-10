@@ -1,13 +1,13 @@
 defmodule CouchjitsuTrack.ActivityHistoryView do
   use CouchjitsuTrack.Web, :view
 
-  def get_date(date_time) do
-    Ecto.DateTime.to_date(date_time)
+  def get_date(date) do
+    Ecto.Date.to_string(date)
   end
 
   def get_events(events, date) do
       events
-      |> Enum.filter(fn e -> get_date(e.date) == get_date(date) end)
+      |> Enum.filter(fn e -> e.date == date end)
       |> Enum.map(fn e -> %{name: e.name, time: e.time, note: e.note} end)
   end
 

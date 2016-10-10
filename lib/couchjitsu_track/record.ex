@@ -5,6 +5,6 @@ defmodule CouchjitsuTrack.Record do
        field :note
        field :duration, :float
        field :activity_id, :integer
-       field :date, Ecto.DateTime
+       field :date, Ecto.Date
    end
 end
