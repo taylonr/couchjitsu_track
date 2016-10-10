@@ -1,0 +1,10 @@
+<%= for event <- @events do %>
+  <div class="ui feed">
+    <h2 class="ui center aligned dividing header">
+      <%= get_date event.date %>
+    </h2>
+    <%= for item <- get_events @events, event.date do %>
+      <%= render "event.html", e: item %>
+    <% end %>
+  </div>
+<% end %>
