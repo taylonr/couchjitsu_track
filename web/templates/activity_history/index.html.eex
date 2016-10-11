@@ -1,10 +1,16 @@
+<div class="ui three column grid">
 <%= for date <- @dates do %>
-  <div class="ui feed">
-    <h2 class="ui center aligned dividing header">
-      <%= get_date date %>
-    </h2>
-    <%= for item <- get_events @events, date do %>
-      <%= render "event.html", e: item %>
-    <% end %>
+  <div class="column"></div>
+  <div class="column">
+    <div class="ui centered feed">
+      <h2 class="ui center aligned dividing header">
+        <%= get_date date %>
+      </h2>
+      <%= for item <- get_events @events, date do %>
+        <%= render "event.html", e: item %>
+      <% end %>
+    </div>
   </div>
+  <div class="column"></div>
 <% end %>
+</div>
