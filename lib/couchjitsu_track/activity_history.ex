@@ -12,7 +12,7 @@ defmodule CouchjitsuTrack.ActivityHistory do
                     time: r.duration,
                     note: r.note
                 },
-                order_by: r.date
+                order_by: [desc: r.date]
 
         CouchjitsuTrack.Repo.all(query)
     end
@@ -23,7 +23,7 @@ defmodule CouchjitsuTrack.ActivityHistory do
                 where: a.user_id == ^user_id,
                 select: r.date,
                 distinct: true,
-                order_by: r.date
+                order_by: [desc: r.date]
 
         CouchjitsuTrack.Repo.all(query)
     end
