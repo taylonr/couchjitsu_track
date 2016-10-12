@@ -18,6 +18,7 @@ defmodule CouchjitsuTrack.Router do
 
     get "/", PageController, :index
     get "/ActivityFeed", ActivityHistoryController, :index
+    get "/Activity/:id", ActivityController, :index
   end
 
   # Other scopes may use custom stacks.

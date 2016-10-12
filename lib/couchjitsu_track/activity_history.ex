@@ -18,6 +18,18 @@ defmodule CouchjitsuTrack.ActivityHistory do
         CouchjitsuTrack.Repo.all(query)
     end
 
+    def get_history_for_id(activity_id) do
+        query = from r in Record,
+                where: r.activity_id == ^activity_id,
+                select: %{date: r.date,
+                        time: r.duration,
+                        note: r.note
+                },
+                order_by: [desc: r.date]
+
+        CouchjitsuTrack.Repo.all(query)
+    end
+
     def get_dates_for_user(user_id) do
         query = from r in Record,
                 join: a in Activity, on: r.activity_id == a.id,

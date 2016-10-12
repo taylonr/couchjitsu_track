@@ -1,0 +1,24 @@
+<h1>Activity</h1>
+<%= for activity <- @activities do %>
+    <div class="column"></div>
+    <div class="column">
+        <div class="ui centered feed">
+            <div class="event">
+                <div class="content">
+                    <div class="summary">
+                        <%= activity.date %>
+                        <div class="date">
+                            <%= activity.time %>
+                        </div>
+                        <%= if activity[:notes] do %>
+                            <div class="extra text">
+                                <%= activity.notes %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column"></div>
+<% end %>
