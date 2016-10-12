@@ -10,7 +10,8 @@ defmodule CouchjitsuTrack.ActivityHistory do
                 select: %{date: r.date,
                     name: a.name,
                     time: r.duration,
-                    note: r.note
+                    note: r.note,
+                    activity_id: a.id
                 },
                 order_by: [desc: r.date]
 

@@ -1,7 +1,7 @@
 <div class="event">
     <div class="content">
         <div class="summary">
-            <a><%= @e.name %></a>
+            <a href="Activity/<%= @e.activity_id %>"><%= @e.name %></a>
             <div class="date">
                 <%= @e.time %>
             </div>
