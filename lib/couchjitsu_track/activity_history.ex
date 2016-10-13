@@ -21,13 +21,17 @@ defmodule CouchjitsuTrack.ActivityHistory do
     def get_history_for_id(activity_id) do
         query = from r in Record,
                 where: r.activity_id == ^activity_id,
-                select: %{date: r.date,
-                        time: r.duration,
-                        note: r.note
+                select: %{month: fragment("date_part('month', ?)::integer", r.date),
+                        year: fragment("date_part('year', ?)::integer", r.date),
+                        hours: sum(r.duration)
                 },
-                order_by: [desc: r.date]
-
+                group_by: fragment("date_part('month', ?), date_part('year', ?)", r.date, r.date),
+                order_by: fragment("date_part('year', ?), date_part('month', ?)", r.date, r.date)
         CouchjitsuTrack.Repo.all(query)
+    end
+
+    def get_name(activity_id) do
+        CouchjitsuTrack.Repo.get(Activity, activity_id).name
     end
 
     def get_dates_for_user(user_id) do

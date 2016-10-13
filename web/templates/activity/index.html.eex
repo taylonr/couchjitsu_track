@@ -1,24 +1,17 @@
-<h1>Activity</h1>
+<h1><%= @title %>(<%= get_total @activities %>)</h1>
+<div class="ui four stackable cards">
 <%= for activity <- @activities do %>
-    <div class="column"></div>
-    <div class="column">
-        <div class="ui centered feed">
-            <div class="event">
-                <div class="content">
-                    <div class="summary">
-                        <%= activity.date %>
-                        <div class="date">
-                            <%= activity.time %>
-                        </div>
-                        <%= if activity[:notes] do %>
-                            <div class="extra text">
-                                <%= activity.notes %>
-                            </div>
-                        <% end %>
-                    </div>
+    <div class="card">
+        <div class="content">
+            <div class="header"><%= get_month activity.month %>, <%= activity.year %></div>
+        </div>
+        <div class="content">
+            <div class="ui statistic">
+                <div class="value">
+                    <%= activity.hours %>
                 </div>
             </div>
         </div>
     </div>
-    <div class="column"></div>
 <% end %>
+</div>

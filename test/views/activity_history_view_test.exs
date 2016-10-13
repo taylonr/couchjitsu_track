@@ -2,12 +2,6 @@ defmodule ActivityHistoryViewTest do
     use ExUnit.Case
     alias CouchjitsuTrack.ActivityHistoryView
 
-    test "get_date should convert a date to a string" do
-        {:ok, date} = Ecto.Date.load({2016, 1, 1})
-
-        assert ActivityHistoryView.get_date(date) == "January 1, 2016"
-    end
-
     test "events should get a list of events for a date" do
         {:ok, date} = Ecto.Date.cast({2016, 1, 1})
 
