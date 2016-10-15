@@ -19,6 +19,6 @@
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
   <footer>
-    <p class="tiny label"><%= System.get_env("HEROKU_SLUG_COMMIT") %></p>
+    <label class="tiny basic label"><%= System.get_env("HEROKU_SLUG_COMMIT") %></label>
   </footer>
 </html>
