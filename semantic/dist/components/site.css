@@ -33,6 +33,10 @@ body {
   color: rgba(0, 0, 0, 0.87);
   font-smoothing: antialiased;
 }
+footer {
+  position: absolute;
+  bottom: 0px;
+}
 
 
 /*******************************
@@ -152,6 +156,10 @@ input::selection {
         Global Overrides
 *******************************/
 
+footer {
+  position: absolute;
+  bottom: 0px;
+}
 
 
 /*******************************

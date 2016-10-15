@@ -22,4 +22,10 @@ defmodule CouchjitsuTrack.Date do
             12 -> "December"
         end
     end
+
+    def today do
+        {{y, m, d}, _} = :calendar.local_time()
+        
+        "#{y}-#{m}-#{d}"
+    end
 end
