@@ -1,2 +1,1 @@
 <h1>Homepage</h1>
-<h2><%= System.get_env("HEROKU_SLUG_COMMIT") %></h2>
