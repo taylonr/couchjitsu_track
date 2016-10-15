@@ -2,6 +2,7 @@
   "repository": {},
   "dependencies": {
     "gulp": "^3.9.1",
+    "jquery": "^3.1.1",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "semantic-ui": "^2.2.2"

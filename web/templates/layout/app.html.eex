@@ -9,6 +9,8 @@
 
     <title>Hello CouchjitsuTrack!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </head>
 
   <body>
@@ -16,7 +18,7 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
 
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
   </body>
   <footer>
     <label class="tiny basic label"><%= System.get_env("HEROKU_SLUG_COMMIT") %></label>

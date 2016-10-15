@@ -3,7 +3,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  entry: ["./semantic/dist/semantic.css", "./semantic/dist/semantic.js", "./web/static/js/app.js"],
+  entry: ["./semantic/dist/semantic.css", "./node_modules/jquery/dist/jquery.js", "./semantic/dist/semantic.js", "./web/static/js/app.js"],
   output: {
     path: "./priv/static",
     filename: "js/app.js"

@@ -19,3 +19,11 @@ import "phoenix_html";
 // paths "./socket" or full ones "web/static/js/socket".
 
 import { Socket } from "phoenix";
+
+$('body').on('click', function () {
+    console.log('test');
+});
+
+// $('body').on('click', '.ui.dividing.header', function () {
+//     $('ui.form').toggle('hidden');
+// });

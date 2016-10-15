@@ -1066,3 +1066,6 @@
          Site Overrides
 *******************************/
 
+.ui.form.hidden {
+  display: none;
+}
