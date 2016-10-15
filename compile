@@ -1,3 +1,4 @@
 cd semantic
 gulp build
+cd ..
 mix phoenix.digest
