@@ -25,7 +25,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch-stdin --progress --color"
+    "start": "webpack --watch-stdin --progress --color",
+    "postinstall": "cd semantic && gulp build"
   },
   "author": "Nate Taylor (@taylonr)",
   "license": "MIT"
