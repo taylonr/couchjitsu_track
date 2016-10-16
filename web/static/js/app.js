@@ -20,10 +20,4 @@ import "phoenix_html";
 
 import { Socket } from "phoenix";
 
-$('body').on('click', function () {
-    console.log('test');
-});
-
-// $('body').on('click', '.ui.dividing.header', function () {
-//     $('ui.form').toggle('hidden');
-// });
+import record from './record'

@@ -25,7 +25,7 @@
           <textarea rows="2"></textarea>
         </div>
       </div>
-      <button class="ui primary basic right floated button">Add</button>
+      <button type="submit" class="ui primary basic right floated button">Add</button>
     </form>
   </div>
   <div class="column"></div>
@@ -44,9 +44,3 @@
   <div class="column"></div>
 <% end %>
 </div>
-
-<script type="text/javascript">
-$('body').on('click', '.dividing.header', function () {
-    $('.form').toggle('hidden');
-});
-</script>

@@ -3,6 +3,7 @@ defmodule CouchjitsuTrack.UserSocket do
 
   ## Channels
   # channel "rooms:*", CouchjitsuTrack.RoomChannel
+  channel "records:*", CouchjitsuTrack.RecordChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
