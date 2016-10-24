@@ -17,8 +17,9 @@ defmodule CouchjitsuTrack.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/ActivityFeed", ActivityHistoryController, :index
-    get "/Activity/:id", ActivityController, :index
+    get "/activityfeed", ActivityHistoryController, :index
+    get "/activityfeed/new", ActivityHistoryController, :new
+    get "/activity/:id", ActivityController, :index
   end
 
   # Other scopes may use custom stacks.

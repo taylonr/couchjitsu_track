@@ -1,34 +1,4 @@
 <div class="ui three column grid">
-  <div class="column"></div>
-  <div class="column">
-    <h4 class="ui dividing header">Add Activity</h4>
-    <form class="ui form hidden">
-      <div class="fields">
-        <div class="twelve wide field">
-          <label>Date</label>
-          <input type="date" value="<%= CouchjitsuTrack.Date.today %>"/>
-        </div>
-      </div>
-      <div class="fields">
-        <div class="twelve wide field">
-          <label>Activity</label>
-          <input type="text" />
-        </div>
-        <div class="four wide field">
-          <label>Duration</label>
-          <input type="number" value="1" min="0" />
-        </div>
-      </div>
-      <div class="fields">
-        <div class="sixteen wide field">
-          <label>Notes</label>
-          <textarea rows="2"></textarea>
-        </div>
-      </div>
-      <button type="submit" class="ui primary basic right floated button">Add</button>
-    </form>
-  </div>
-  <div class="column"></div>
 <%= for date <- @dates do %>
   <div class="column"></div>
   <div class="column">

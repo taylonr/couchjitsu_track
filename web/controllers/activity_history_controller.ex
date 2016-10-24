@@ -8,4 +8,8 @@ defmodule CouchjitsuTrack.ActivityHistoryController do
 
       render conn, "index.html", events: history, dates: dates
   end
+
+  def new(conn, _params) do
+    render conn, "new.html"
+  end
 end
