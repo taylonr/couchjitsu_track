@@ -15,6 +15,9 @@
 
   <body>
       <main class='ui container' role="main">
+        <div class='ui right floated basic segment'>
+          <%= get_user(@conn) %>
+        </div>
         <%= render @view_module, @view_template, assigns %>
       </main>
 

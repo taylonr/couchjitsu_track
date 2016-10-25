@@ -27,3 +27,12 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+config :ueberauth, Ueberauth,
+  providers: [
+    facebook: {Ueberauth.Strategy.Facebook, []}
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
+  client_id: System.get_env("GYMTIME_FACEBOOK_TEST_ID"),
+  client_secret: System.get_env("GYMTIME_FACEBOOK_TEST_SECRET")

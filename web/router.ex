@@ -17,9 +17,19 @@ defmodule CouchjitsuTrack.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+
+
     get "/activityfeed", ActivityHistoryController, :index
     get "/activityfeed/new", ActivityHistoryController, :new
     get "/activity/:id", ActivityController, :index
+  end
+
+  scope "/auth", CouchjitsuTrack do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.
