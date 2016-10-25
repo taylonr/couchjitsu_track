@@ -2,10 +2,10 @@
          Site Overrides
 *******************************/
 .ui {
-    &.segment {
+    &.container {
         &.margined {
             &.top {
-                margin-top: 20px;
+                margin-top: 50px;
             }
         }
     }

@@ -145,6 +145,6 @@
          Site Overrides
 *******************************/
 
-.ui.segment.margined.top {
-  margin-top: 20px;
+.ui.container.margined.top {
+  margin-top: 50px;
 }
