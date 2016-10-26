@@ -2,9 +2,11 @@ defmodule CouchjitsuTrack.ActivityHistoryController do
   use CouchjitsuTrack.Web, :controller
 
   def index(conn, _params) do
-      history = CouchjitsuTrack.ActivityHistory.get_history_for_user(76)
+      user = Plug.Conn.get_session(conn, :current_user)
 
-      dates = CouchjitsuTrack.ActivityHistory.get_dates_for_user(76)
+      history = CouchjitsuTrack.ActivityHistory.get_history_for_user(user.id)
+
+      dates = CouchjitsuTrack.ActivityHistory.get_dates_for_user(user.id)
 
       render conn, "index.html", events: history, dates: dates
   end
