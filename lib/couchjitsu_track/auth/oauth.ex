@@ -1,17 +1,19 @@
 defmodule CouchjitsuTrack.Oauth do
     alias Ueberauth.Auth
+    alias CouchjitsuTrack.User
 
     def get_user(%Auth{} = auth) do
-        %{id: auth.uid, provider: auth.provider, name: get_name(auth.info)}
-    end
+        user = auth
+        |> get_oauth_token
+        |> User.find_by_oauth
 
-    defp get_name(%Auth.Info{} = info) do
-        if(info.name) do
-            info.name
-        else
-            "#{info.first_name} #{info.last_name}"
+        case user do
+            nil -> User.add(auth)
+            _ -> user
         end
-
     end
 
+    def get_oauth_token(auth) do
+        "#{auth.provider}:#{auth.uid}"
+    end
 end

@@ -26,8 +26,10 @@ defmodule CouchjitsuTrack.ModelCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(CouchjitsuTrack.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(CouchjitsuTrack.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(CouchjitsuTrack.Repo, {:shared, self()})
     end
 
     :ok

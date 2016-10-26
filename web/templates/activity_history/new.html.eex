@@ -2,7 +2,7 @@
   <div class="column"></div>
   <div class="column">
     <h4 class="ui dividing header">Add Activity</h4>
-    <form class="ui form hidden">
+    <form class="ui form">
       <div class="fields">
         <div class="twelve wide field">
           <label>Date</label>

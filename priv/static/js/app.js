@@ -11884,10 +11884,6 @@
 	    });
 	  };
 
-	  $('body').on('click', '.dividing.header', function () {
-	    $('.form').toggle('hidden');
-	  });
-
 	  $('.form').on('click', 'button', function (e) {
 	    e.preventDefault();
 	    addRecord("judo");
