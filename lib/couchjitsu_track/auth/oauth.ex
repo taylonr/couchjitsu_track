@@ -6,14 +6,23 @@ defmodule CouchjitsuTrack.Oauth do
         user = auth
         |> get_oauth_token
         |> User.find_by_oauth
+        |> IO.inspect
 
         case user do
-            nil -> User.add(auth)
+            nil -> User.add(%User{oauth_token: get_oauth_token(auth), name: get_name(auth)})
             _ -> user
         end
     end
 
-    def get_oauth_token(auth) do
+    defp get_oauth_token(auth) do
         "#{auth.provider}:#{auth.uid}"
+    end
+
+    defp get_name(auth) do
+        if(auth.info.name) do
+            auth.info.name
+        else
+            "#{auth.info.first_name} #{auth.info.last_name}"
+        end
     end
 end
