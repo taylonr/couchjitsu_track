@@ -12,5 +12,12 @@ defmodule CouchjitsuTrack.Record do
    def changeset(record, params \\ %{}) do
        record
        |> cast(params, [:note, :duration, :activity_id, :date])
+       |> validate_required([:duration, :activity_id, :date])
+   end
+
+   def add(record) do
+       {:ok, created_record} = CouchjitsuTrack.Repo.insert(record)
+
+       created_record
    end
 end

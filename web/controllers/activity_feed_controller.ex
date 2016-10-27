@@ -24,6 +24,9 @@ defmodule CouchjitsuTrack.ActivityFeedController do
   end
 
   def create(conn, %{"record" => record}) do
+    Record.changeset(%Record{}, record)
+    |> Record.add
+
     redirect(conn, to: "/activityfeed/new")
   end
 end
