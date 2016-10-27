@@ -23,12 +23,12 @@ $(function() {
       });
     }
 
-  $('.form').on('click', 'button', function(e){
-    e.preventDefault();
-    addRecord("judo");
+  // $('.form').on('click', 'button', function(e){
+  //   e.preventDefault();
+  //   addRecord("judo");
 
-    console.log($('form').serialize());
-  });
+  //   console.log($('form').serialize());
+  // });
 
   channel.on("add", function (p) {
     console.log(p);

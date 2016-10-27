@@ -22,6 +22,7 @@ defmodule CouchjitsuTrack.Router do
 
     get "/activityfeed", ActivityFeedController, :index
     get "/activityfeed/new", ActivityFeedController, :new
+    post "/activityfeed/new", ActivityFeedController, :create
     get "/activity/:id", ActivityController, :index
   end
 

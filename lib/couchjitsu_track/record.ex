@@ -1,10 +1,16 @@
 defmodule CouchjitsuTrack.Record do
    use Ecto.Schema
+   import Ecto.Changeset
 
    schema "records" do
        field :note
        field :duration, :float
        field :activity_id, :integer
        field :date, Ecto.Date
+   end
+
+   def changeset(record, params \\ %{}) do
+       record
+       |> cast(params, [:note, :duration, :activity_id, :date])
    end
 end
