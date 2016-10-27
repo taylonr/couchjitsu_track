@@ -36,3 +36,5 @@ config :ueberauth, Ueberauth,
 config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
   client_id: System.get_env("GYMTIME_FACEBOOK_TEST_ID"),
   client_secret: System.get_env("GYMTIME_FACEBOOK_TEST_SECRET")
+
+config :couchjitsu_track, ecto_repos: [CouchjitsuTrack.Repo]

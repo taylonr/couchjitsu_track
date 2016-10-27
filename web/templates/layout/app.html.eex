@@ -19,9 +19,15 @@
           <img src="<%= static_path(@conn, "/assets/couchjitsu_large_logo.png") %>" />
         </div>
         <div class='right menu'>
+        <%= if(@conn.assigns[:current_user]) do %>
           <div class='item'>
             <%= get_user(@conn) %>
           </div>
+        <% else %>
+          <div class='item'>
+            <a href='auth/facebook'>Sign In</a>
+          </div>
+        <% end %>
         </div>
       </nav>
       <main class='ui top margined container' role="main">

@@ -1,6 +1,8 @@
 defmodule CouchjitsuTrack.ActivityHistoryController do
   use CouchjitsuTrack.Web, :controller
 
+  plug CouchjitsuTrack.Plugs.RequireAuthentication
+
   def index(conn, _params) do
       user = Plug.Conn.get_session(conn, :current_user)
 

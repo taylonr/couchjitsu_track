@@ -6,7 +6,7 @@ defmodule CouchjitsuTrack.LayoutView do
     if user do
       user.name
     else
-      ""
+      "Log In"
     end
 
   end
