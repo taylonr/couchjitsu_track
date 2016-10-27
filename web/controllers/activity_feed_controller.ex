@@ -1,4 +1,4 @@
-defmodule CouchjitsuTrack.ActivityHistoryController do
+defmodule CouchjitsuTrack.ActivityFeedController do
   use CouchjitsuTrack.Web, :controller
 
   plug CouchjitsuTrack.Plugs.RequireAuthentication

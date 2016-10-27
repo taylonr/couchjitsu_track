@@ -1,4 +1,4 @@
-defmodule ActivityHistoryViewTest do
+defmodule ActivityFeedViewTest do
     use ExUnit.Case
     alias CouchjitsuTrack.ActivityHistoryView
 

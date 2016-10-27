@@ -1,4 +1,4 @@
-defmodule CouchjitsuTrack.ActivityHistoryView do
+defmodule CouchjitsuTrack.ActivityFeedView do
   use CouchjitsuTrack.Web, :view
 
   def get_date(date) do

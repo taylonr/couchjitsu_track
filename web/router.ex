@@ -20,8 +20,8 @@ defmodule CouchjitsuTrack.Router do
 
 
 
-    get "/activityfeed", ActivityHistoryController, :index
-    get "/activityfeed/new", ActivityHistoryController, :new
+    get "/activityfeed", ActivityFeedController, :index
+    get "/activityfeed/new", ActivityFeedController, :new
     get "/activity/:id", ActivityController, :index
   end
 

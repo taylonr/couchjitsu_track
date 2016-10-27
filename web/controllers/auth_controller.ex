@@ -23,6 +23,6 @@ defmodule CouchjitsuTrack.AuthController do
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
       put_session(conn, :current_user, CouchjitsuTrack.Oauth.get_user(auth))
-      |> redirect(to: "/activityfeed")
+      |> redirect(to: "/activityfeed/new")
   end
 end
