@@ -14,6 +14,9 @@ defmodule CouchjitsuTrack.ActivityFeedController do
   end
 
   def new(conn, _params) do
-    render conn, "new.html"
+    user = conn.assigns[:current_user]
+    activities = CouchjitsuTrack.Activity.Query.get_for_user(user.id)
+
+    render conn, "new.html", activities: activities
   end
 end

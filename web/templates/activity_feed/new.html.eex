@@ -1,5 +1,9 @@
 <div class="ui three column grid">
-  <div class="column"></div>
+  <div class="column">
+    <%= for activity <- @activities do %>
+      <div><%= activity.name %></div>
+    <% end %>
+  </div>
   <div class="column">
     <h4 class="ui dividing header">Add Activity</h4>
     <form class="ui form">
