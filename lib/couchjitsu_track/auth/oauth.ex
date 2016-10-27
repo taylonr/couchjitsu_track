@@ -6,7 +6,6 @@ defmodule CouchjitsuTrack.Oauth do
         user = auth
         |> get_oauth_token
         |> User.find_by_oauth
-        |> IO.inspect
 
         case user do
             nil -> User.add(%User{oauth_token: get_oauth_token(auth), name: get_name(auth)})
