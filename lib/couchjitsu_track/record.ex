@@ -9,9 +9,12 @@ defmodule CouchjitsuTrack.Record do
        field :date, Ecto.Date
    end
 
+   @required_fields ~w(duration activity_id date)
+   @optional_fields ~w(note)
+
    def changeset(record, params \\ %{}) do
        record
-       |> cast(params, [:note, :duration, :activity_id, :date])
+       |> cast(params, @required_fields, @optional_fields)
        |> validate_required([:duration, :activity_id, :date])
    end
 

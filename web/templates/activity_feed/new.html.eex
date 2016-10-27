@@ -24,7 +24,7 @@
       <div class="fields">
         <div class="sixteen wide field">
           <label>Notes</label>
-          <%= textarea f, :notes, rows: 2 %>
+          <%= textarea f, :note, rows: 2 %>
         </div>
       </div>
       <button type="submit" class="ui primary basic right floated button">Add</button>

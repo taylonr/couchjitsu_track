@@ -5,9 +5,10 @@
             <div class="date">
                 <%= @e.time %>
             </div>
-            <%= if @e[:notes] do %>
+
+            <%= if @e.note != nil do %>
                 <div class="extra text">
-                    <%= @e.notes %>
+                    <%= @e.note %>
                 </div>
             <% end %>
         </div>

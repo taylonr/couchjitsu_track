@@ -15608,7 +15608,6 @@ ol.ui.horizontal.list li:before,
   margin: 0em 0em 1em;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  -ms-grid-row-align: center;
   align-items: center;
 }
 
@@ -17111,6 +17110,7 @@ ol.ui.horizontal.list li:before,
   flex-direction: column;
   vertical-align: middle;
   -ms-flex-item-align: center !important;
+  -ms-grid-row-align: center !important;
   align-self: center !important;
 }
 
@@ -17171,6 +17171,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .row > [class*="left aligned"].column.column {
   text-align: left;
   -ms-flex-item-align: inherit;
+  -ms-grid-row-align: inherit;
   align-self: inherit;
 }
 
@@ -17183,6 +17184,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .row > [class*="center aligned"].column.column {
   text-align: center;
   -ms-flex-item-align: inherit;
+  -ms-grid-row-align: inherit;
   align-self: inherit;
 }
 
@@ -17201,6 +17203,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .row > [class*="right aligned"].column.column {
   text-align: right;
   -ms-flex-item-align: inherit;
+  -ms-grid-row-align: inherit;
   align-self: inherit;
 }
 
@@ -18855,6 +18858,7 @@ Floated Menu / Item
 
 .ui.secondary.menu .item {
   -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
   align-self: center;
   box-shadow: none;
   border: none;
@@ -19134,6 +19138,7 @@ Floated Menu / Item
   border-radius: 0px;
   box-shadow: none;
   -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
   align-self: center;
   margin: 0em 0em;
   padding: 0.35714286em 0.5em;
@@ -23209,6 +23214,7 @@ a.ui.card:hover,
   padding: 0em;
   max-height: '';
   -ms-flex-item-align: top;
+  -ms-grid-row-align: top;
   align-self: top;
 }
 
@@ -23257,6 +23263,7 @@ a.ui.card:hover,
   display: block;
   margin-left: 0em;
   -ms-flex-item-align: top;
+  -ms-grid-row-align: top;
   align-self: top;
   padding-left: 1.5em;
 }
@@ -23293,6 +23300,7 @@ a.ui.card:hover,
 
 .ui.items > .item .content img {
   -ms-flex-item-align: middle;
+  -ms-grid-row-align: middle;
   align-self: middle;
   width: '';
 }
@@ -23541,6 +23549,7 @@ a.ui.card:hover,
 
 .ui.items > .item > .image + [class*="middle aligned"].content {
   -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
   align-self: center;
 }
 
@@ -23919,7 +23928,6 @@ a.ui.card:hover,
   flex-direction: row;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  -ms-grid-row-align: center;
   align-items: center;
 }
 
@@ -23939,7 +23947,6 @@ a.ui.card:hover,
   flex-direction: row;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  -ms-grid-row-align: center;
   align-items: center;
   max-width: none;
   margin: 1em 0em;
@@ -26805,21 +26812,25 @@ select.ui.dropdown {
   flex: 0 1 auto;
   width: '';
   -ms-flex-item-align: top;
+  -ms-grid-row-align: top;
   align-self: top;
 }
 
 .ui.modal > [class*="top aligned"] {
   -ms-flex-item-align: top;
+  -ms-grid-row-align: top;
   align-self: top;
 }
 
 .ui.modal > [class*="middle aligned"] {
   -ms-flex-item-align: middle;
+  -ms-grid-row-align: middle;
   align-self: middle;
 }
 
 .ui.modal > [class*="stretched"] {
   -ms-flex-item-align: stretch;
+  -ms-grid-row-align: stretch;
   align-self: stretch;
 }
 
@@ -26832,6 +26843,7 @@ select.ui.dropdown {
   flex: 1 0 auto;
   min-width: 0px;
   -ms-flex-item-align: top;
+  -ms-grid-row-align: top;
   align-self: top;
 }
 
@@ -29964,6 +29976,7 @@ select.ui.dropdown {
   width: 2.5em;
   height: auto;
   -ms-flex-item-align: stretch;
+  -ms-grid-row-align: stretch;
   align-self: stretch;
   text-align: left;
 }
@@ -30001,6 +30014,7 @@ select.ui.dropdown {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   -ms-flex-item-align: stretch;
+  -ms-grid-row-align: stretch;
   align-self: stretch;
   text-align: left;
   word-wrap: break-word;
@@ -30210,3 +30224,9 @@ select.ui.dropdown {
 /*******************************
     User Variable Overrides
 *******************************/
+
+.ui.feed > .event > .content .extra.text {
+  padding-left: 10px;
+  color: #767676;
+  font-size: 0.8em;
+}
