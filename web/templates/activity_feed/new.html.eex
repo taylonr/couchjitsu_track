@@ -1,8 +1,5 @@
 <div class="ui three column grid">
   <div class="column">
-    <%= for activity <- @activities do %>
-      <div><%= activity.name %></div>
-    <% end %>
   </div>
   <div class="column">
     <h4 class="ui dividing header">Add Activity</h4>
@@ -16,7 +13,11 @@
       <div class="fields">
         <div class="twelve wide field">
           <label>Activity</label>
-          <input type="text" />
+          <select class="ui search selection dropdown">
+            <%= for activity <- @activities do %>
+              <option value="<%= activity.id %>"><%= activity.name %></option>
+            <% end %>
+          </select>
         </div>
         <div class="four wide field">
           <label>Duration</label>
