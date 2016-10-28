@@ -1,3 +1,17 @@
 /*******************************
     User Variable Overrides
 *******************************/
+.ui {
+    .card {
+        &.inverted {
+            background: @black;
+            .content {
+                .header {
+                    color: @white;
+                }
+            }
+
+            border-bottom: 1px solid @white;
+        }
+    }
+}

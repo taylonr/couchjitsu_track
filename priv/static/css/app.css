@@ -23123,6 +23123,15 @@ a.ui.card:hover,
 /*******************************
     User Variable Overrides
 *******************************/
+
+.ui .card.inverted {
+  background: #1B1C1D;
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.ui .card.inverted .content .header {
+  color: #FFFFFF;
+}
 /*!
  * # Semantic UI 2.2.4 - Item
  * http://github.com/semantic-org/semantic-ui/
