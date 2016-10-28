@@ -16,8 +16,13 @@
   <body>
       <nav class='ui top fixed inverted menu'>
         <div class='item'>
-          <img src="<%= static_path(@conn, "/assets/couchjitsu_large_logo.png") %>" />
+          <a href='http://couchjitsu.com'><img src="<%= static_path(@conn, "/assets/couchjitsu_large_logo.png") %>" class="ui mini image" /></a>
         </div>
+        <%= if(@conn.assigns[:current_user]) do %>
+          <a href='/activityfeed' class='item'><i class='ui clock icon'></i>History</a>
+          <a href='/activityfeed/new' class='item'><i class='ui plus icon'></i>New</a>
+        <% end %>
+
         <div class='right menu'>
         <%= if(@conn.assigns[:current_user]) do %>
           <div class='item'>
