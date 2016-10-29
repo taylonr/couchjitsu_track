@@ -1,1 +1,19 @@
-<h2>Users</h2>
+<div class="ui form">
+    <div class="field">
+        <label>Category</label>
+        <input type="text" class="ui input" />
+    </div>
+    <div class="field">
+        <select class="ui fluid dropdown" multiple="">
+            <option>BJJ</option>
+            <option>Judo</option>
+            <option>no-gi</option>
+            <option>sparring</option>
+        </select>
+    </div>
+</div>
+<script type="text/javascript">
+  (function(){
+    $('.dropdown').dropdown();
+  })();
+</script>

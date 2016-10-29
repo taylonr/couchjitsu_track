@@ -14,7 +14,7 @@
       <div class="fields">
         <div class="twelve wide field">
           <label>Activity</label>
-          <%= select f, :activity_id, @activities |> Enum.map(&{&1.name, &1.id}), class: "ui sesarch selection dropdown" %>
+          <%= select f, :activity_id, @activities |> Enum.map(&{&1.name, &1.id}), class: "ui search selection dropdown" %>
         </div>
         <div class="four wide field">
           <label>Duration</label>
@@ -33,3 +33,10 @@
   </div>
   <div class="column"></div>
 </div>
+<script type="text/javascript">
+  (function(){
+    $('.dropdown').dropdown({
+      allowAdditions: true
+    });
+  })();
+</script>
