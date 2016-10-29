@@ -26,9 +26,7 @@
 
         <div class='right menu'>
         <%= if(@conn.assigns[:current_user]) do %>
-          <div class='item'>
-            <%= get_user(@conn) %>
-          </div>
+          <a href="/user" class='item'><%= get_user(@conn) %></a>
         <% else %>
           <div class='item'>
             <a href='auth/facebook'>Sign In</a>

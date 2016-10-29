@@ -38,6 +38,12 @@ defmodule CouchjitsuTrack.Router do
     get "/:provider/callback", AuthController, :callback
   end
 
+  scope "/user", CouchjitsuTrack do
+    pipe_through :browser
+
+    get "/", UserController, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", CouchjitsuTrack do
   #   pipe_through :api
