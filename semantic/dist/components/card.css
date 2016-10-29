@@ -966,6 +966,9 @@ a.ui.card:hover,
   background: #1B1C1D;
   border-bottom: 1px solid #FFFFFF;
 }
-.ui .card.inverted .content .header {
-  color: #FFFFFF;
+.ui .card.inverted.green {
+  background: #21BA45;
+}
+.ui .card.inverted.red {
+  background: #DB2828;
 }

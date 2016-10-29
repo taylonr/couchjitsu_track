@@ -61,7 +61,6 @@
   width: 2.5em;
   height: auto;
   -ms-flex-item-align: stretch;
-      -ms-grid-row-align: stretch;
       align-self: stretch;
   text-align: left;
 }
@@ -96,7 +95,6 @@
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   -ms-flex-item-align: stretch;
-      -ms-grid-row-align: stretch;
       align-self: stretch;
   text-align: left;
   word-wrap: break-word;

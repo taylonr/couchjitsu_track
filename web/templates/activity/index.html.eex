@@ -1,12 +1,12 @@
 <h1><%= @title %>(<%= get_total @activities %>)</h1>
 <div class="ui four stackable cards">
 <%= for activity <- @activities do %>
-    <div class="inverted card">
+    <div class="card">
         <div class="content">
             <div class="header"><%= get_month activity.month %>, <%= activity.year %></div>
         </div>
         <div class="content">
-            <div class="ui inverted statistic">
+            <div class="ui <%= get_color(activity) %> statistic">
                 <div class="value">
                     <%= activity.hours %>
                 </div>

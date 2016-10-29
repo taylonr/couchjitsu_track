@@ -9,4 +9,12 @@ defmodule CouchjitsuTrack.ActivityView do
         activities
         |> Enum.reduce(0, fn a, acc  -> a.hours + acc end)
     end
+
+    def get_color(activity) do
+        case activity do
+            %{max: true} -> "green"
+            %{min: true} -> "red"
+            _ -> ""
+        end
+    end
 end

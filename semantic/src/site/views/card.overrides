@@ -5,10 +5,13 @@
     .card {
         &.inverted {
             background: @black;
-            .content {
-                .header {
-                    color: @white;
-                }
+
+            &.green {
+                background: @green;
+            }
+
+            &.red {
+                background: @red;
             }
 
             border-bottom: 1px solid @white;
