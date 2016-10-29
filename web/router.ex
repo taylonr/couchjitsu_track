@@ -18,12 +18,17 @@ defmodule CouchjitsuTrack.Router do
 
     get "/", PageController, :index
 
-
-
-    get "/activityfeed", ActivityFeedController, :index
-    get "/activityfeed/new", ActivityFeedController, :new
-    post "/activityfeed/new", ActivityFeedController, :create
     get "/activity/:id", ActivityController, :index
+
+    get "/statistics", StatisticsController, :index
+  end
+
+  scope "/activityfeed", CouchjitsuTrack do
+    pipe_through :browser
+
+    get "/", ActivityFeedController, :index
+    get "/new", ActivityFeedController, :new
+    post "/new", ActivityFeedController, :create
   end
 
   scope "/auth", CouchjitsuTrack do

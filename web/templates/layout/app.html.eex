@@ -21,6 +21,7 @@
         <%= if(@conn.assigns[:current_user]) do %>
           <a href='/activityfeed' class='item'><i class='ui clock icon'></i>History</a>
           <a href='/activityfeed/new' class='item'><i class='ui plus icon'></i>New</a>
+          <a href='/statistics' class='item'><i class='ui line chart icon'></i>Statistics</a>
         <% end %>
 
         <div class='right menu'>
