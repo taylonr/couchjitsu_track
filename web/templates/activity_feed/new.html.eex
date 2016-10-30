@@ -8,7 +8,7 @@
       <div class="fields">
         <div class="twelve wide field">
           <label>Date</label>
-          <%= text_input f, :date, value: CouchjitsuTrack.Date.today, type: "date" %>
+          <%= text_input f, :date, value: @date, type: "date" %>
         </div>
       </div>
       <div class="fields">
@@ -39,9 +39,16 @@
       <button type="submit" class="ui primary basic right floated button">Add</button>
     </div>
     <% end %>
+    <div class="ui centered feed">
+      <%= for item <- @records do %>
+          <%= render "event.html", e: item %>
+      <% end %>
+    </div>
   </div>
   <div class="column"></div>
 </div>
+
+
 <script type="text/javascript">
   (function(){
     $('.ui.dropdown').dropdown({

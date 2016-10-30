@@ -27,6 +27,20 @@ defmodule CouchjitsuTrack.ActivityHistory do
         CouchjitsuTrack.Repo.all(query)
     end
 
+    def get_history_for_user_and_date(user_id, date) do
+        query = from r in Record,
+                join: a in Activity, on: r.activity_id == a.id,
+                where: a.user_id == ^user_id and r.date == ^date,
+                select: %{date: r.date,
+                    name: a.name,
+                    time: r.duration,
+                    note: r.note,
+                    activity_id: a.id
+                },
+                order_by: fragment("lower(?)", a.name)
+
+        CouchjitsuTrack.Repo.all(query)
+    end
     @doc """
     Gets all the history for a specific activity id.
 

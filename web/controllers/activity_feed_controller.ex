@@ -16,12 +16,16 @@ defmodule CouchjitsuTrack.ActivityFeedController do
       render conn, "index.html", events: history, dates: dates
   end
 
-  def new(conn, _params) do
+  def new(conn, params) do
     user = conn.assigns[:current_user]
+    date = params["date"] || CouchjitsuTrack.Date.today
+
     activities = CouchjitsuTrack.Activity.Query.get_for_user(user.id)
+    records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_date(user.id, date)
+
     changeset = Record.changeset(%Record{})
 
-    render conn, "new.html", activities: activities, changeset: changeset
+    render conn, "new.html", activities: activities, changeset: changeset, date: date, records: records
   end
 
   def create(conn, %{"record" => record}) do
@@ -30,10 +34,12 @@ defmodule CouchjitsuTrack.ActivityFeedController do
       :error -> create_activity_with_record(conn.assigns.current_user.id, record)
     end
 
-    Record.changeset(%Record{}, record)
-    |> Record.add
+    date = record["date"]
+    cond do
+      date == CouchjitsuTrack.Date.today -> redirect(conn, to: "/activityfeed/new")
+      true -> redirect(conn, to: "/activityfeed/new?date=#{date}")
+    end
 
-    redirect(conn, to: "/activityfeed/new")
   end
 
   defp create_activity_with_record(user_id, record) do
