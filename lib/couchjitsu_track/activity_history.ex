@@ -27,6 +27,9 @@ defmodule CouchjitsuTrack.ActivityHistory do
         CouchjitsuTrack.Repo.all(query)
     end
 
+    @doc """
+    Gets the history for a specific date and user.  This can be used to find what activities a user did on a specific day.
+    """
     def get_history_for_user_and_date(user_id, date) do
         query = from r in Record,
                 join: a in Activity, on: r.activity_id == a.id,
