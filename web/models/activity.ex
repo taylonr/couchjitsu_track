@@ -5,6 +5,7 @@ defmodule CouchjitsuTrack.Activity do
     schema "activities" do
         field :name
         field :user_id, :integer
+        field :default_duration, :float
     end
 
     @required_fields ~w(name user_id)

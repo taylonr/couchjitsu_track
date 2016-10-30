@@ -14,7 +14,16 @@
       <div class="fields">
         <div class="twelve wide field">
           <label>Activity</label>
-          <%= select f, :activity_id, @activities |> Enum.map(&{&1.name, &1.id}), class: "ui search selection dropdown" %>
+          <div class="ui search selection dropdown">
+            <input type="hidden" name="record[activity_id]" />
+            <i class="dropdown icon"></i>
+            <div class="defualt text">Select an activity</div>
+            <div class="menu">
+              <%= for activity <- @activities do %>
+                <div class="item" data-value="<%= activity.id %>" data-duration="<%= activity.default_duration %>"><%= activity.name %></div>
+              <% end %>
+            </div>
+          </div>
         </div>
         <div class="four wide field">
           <label>Duration</label>
@@ -35,8 +44,17 @@
 </div>
 <script type="text/javascript">
   (function(){
-    $('.dropdown').dropdown({
-      allowAdditions: true
+    $('.ui.dropdown').dropdown({
+      allowAdditions: true,
+      action: 'activate',
+      onChange: function(value, text, $selectedItem) {
+        var duration = $('[data-value="' + value + '"]').data('duration');
+        if(!duration){
+          duration = 1.0;
+        }
+
+        $('#record_duration').val(duration);
+      }
     });
   })();
 </script>
