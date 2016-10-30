@@ -63,5 +63,9 @@
         $('#record_duration').val(duration);
       }
     });
+
+    $('#record_date').on('change', function(){
+      $('.ui.centered.feed').empty();
+    });
   })();
 </script>
