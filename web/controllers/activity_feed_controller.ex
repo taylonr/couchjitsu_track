@@ -2,6 +2,7 @@ defmodule CouchjitsuTrack.ActivityFeedController do
   use CouchjitsuTrack.Web, :controller
 
   alias CouchjitsuTrack.Record
+  alias CouchjitsuTrack.Activity
 
   plug CouchjitsuTrack.Plugs.RequireAuthentication
 
@@ -24,6 +25,13 @@ defmodule CouchjitsuTrack.ActivityFeedController do
   end
 
   def create(conn, %{"record" => record}) do
+    case Integer.parse(record["activity_id"]) do
+      {activity_id, _} -> Record.changeset(%Record{}, record) |> Record.add
+      :error -> activity = Activity.changeset(%Activity{}, %{user_id: conn.assigns.current_user.id, name: record["activity_id"]}) |> Activity.add
+      new_record = Map.put(record, "activity_id", activity)
+      Record.changeset(%Record{}, new_record) |> Record.add
+    end
+
     Record.changeset(%Record{}, record)
     |> Record.add
 

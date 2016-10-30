@@ -5,8 +5,8 @@ defmodule CouchjitsuTrack.Activity.Query do
 
     def get_for_user(user_id) do
         query = from a in Activity,
-                where: a.user_id == ^user_id
-
+                where: a.user_id == ^user_id,
+                order_by: fragment("LOWER(?)", a.name)
         CouchjitsuTrack.Repo.all(query)
     end
 end
