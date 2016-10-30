@@ -19,8 +19,6 @@ defmodule CouchjitsuTrack.Record do
    end
 
    def add(record) do
-       {:ok, created_record} = CouchjitsuTrack.Repo.insert(record)
-
-       created_record
+       CouchjitsuTrack.Repo.insert(record)
    end
 end

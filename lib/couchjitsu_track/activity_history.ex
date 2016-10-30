@@ -54,7 +54,6 @@ defmodule CouchjitsuTrack.ActivityHistory do
         Enum.map(activities, fn(a) ->
             a
             |> Map.put_new(:max, a.hours == max_val.hours)
-            |> IO.inspect()
             |> Map.put_new(:min, a.hours == min_val.hours)
         end)
     end

@@ -27,14 +27,22 @@ defmodule CouchjitsuTrack.ActivityFeedController do
   def create(conn, %{"record" => record}) do
     case Integer.parse(record["activity_id"]) do
       {_, _} -> Record.changeset(%Record{}, record) |> Record.add
-      :error -> activity = Activity.changeset(%Activity{}, %{user_id: conn.assigns.current_user.id, name: record["activity_id"]}) |> Activity.add
-      new_record = Map.put(record, "activity_id", activity)
-      Record.changeset(%Record{}, new_record) |> Record.add
+      :error -> create_activity_with_record(conn.assigns.current_user.id, record)
     end
 
     Record.changeset(%Record{}, record)
     |> Record.add
 
     redirect(conn, to: "/activityfeed/new")
+  end
+
+  defp create_activity_with_record(user_id, record) do
+    activity = Activity.changeset(%Activity{}, %{user_id: user_id, name: record["activity_id"], default_duration: record["duration"]})
+    |> Activity.add
+
+    new_record = Map.put(record, "activity_id", Integer.to_string(activity.id))
+
+    Record.changeset(%Record{}, new_record)
+    |> Record.add
   end
 end

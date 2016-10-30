@@ -9,10 +9,11 @@ defmodule CouchjitsuTrack.Activity do
     end
 
     @required_fields ~w(name user_id)
+    @optional_fields ~w(default_duration)
 
     def changeset(activity, params \\ %{}) do
         activity
-        |> cast(params, @required_fields)
+        |> cast(params, @required_fields, @optional_fields)
         |> validate_required([:name, :user_id])
     end
 
