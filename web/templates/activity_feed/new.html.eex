@@ -67,5 +67,20 @@
     $('#record_date').on('change', function(){
       $('.ui.centered.feed').empty();
     });
+
+    $('.content').on('click', 'span', function(el){
+      var csrf = $('meta[name=csrf]')[0].content;
+      var id = $(el.currentTarget).data('id');
+      $.ajax({
+        url: '/activityfeed/' + id,
+        headers: {
+          "X-CSRF-TOKEN": csrf
+        },
+        type: 'DELETE',
+        success: function(result) {
+          $(el.currentTarget).parents('.event').remove()
+        }
+      });
+    });
   })();
 </script>
