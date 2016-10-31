@@ -21,4 +21,10 @@ defmodule CouchjitsuTrack.Record do
    def add(record) do
        CouchjitsuTrack.Repo.insert(record)
    end
+
+   def delete(id) do
+       {record_id, _} = Integer.parse(id)
+       record = CouchjitsuTrack.Repo.get(__MODULE__, record_id)
+       CouchjitsuTrack.Repo.delete(record)
+   end
 end

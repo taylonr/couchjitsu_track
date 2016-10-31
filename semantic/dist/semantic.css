@@ -30230,3 +30230,9 @@ select.ui.dropdown {
   color: #767676;
   font-size: 0.8em;
 }
+
+.ui.feed > .event > .content .summary span {
+  float: right;
+  opacity: 0.7;
+  cursor: pointer;
+}

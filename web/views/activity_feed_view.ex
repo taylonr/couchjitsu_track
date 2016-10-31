@@ -12,7 +12,6 @@ defmodule CouchjitsuTrack.ActivityFeedView do
   def get_events(events, date) do
       events
       |> Enum.filter(fn e -> e.date == date end)
-      |> Enum.map(fn e -> %{name: e.name, time: e.time, note: e.note, activity_id: e.activity_id} end)
   end
 
 end

@@ -20,7 +20,8 @@ defmodule CouchjitsuTrack.ActivityHistory do
                     name: a.name,
                     time: r.duration,
                     note: r.note,
-                    activity_id: a.id
+                    activity_id: a.id,
+                    id: r.id
                 },
                 order_by: [desc: r.date]
 
@@ -38,7 +39,8 @@ defmodule CouchjitsuTrack.ActivityHistory do
                     name: a.name,
                     time: r.duration,
                     note: r.note,
-                    activity_id: a.id
+                    activity_id: a.id,
+                    id: r.id
                 },
                 order_by: fragment("lower(?)", a.name)
 

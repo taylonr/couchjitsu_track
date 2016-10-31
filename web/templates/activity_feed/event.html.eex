@@ -5,6 +5,9 @@
             <div class="date">
                 <%= @e.time %>
             </div>
+            <span data-id="<%= @e.id %>">
+                <i class="ui small grey trash icon"></i>
+            </span>
 
             <%= if @e.note != nil do %>
                 <div class="extra text">

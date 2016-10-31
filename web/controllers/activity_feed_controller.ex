@@ -42,6 +42,12 @@ defmodule CouchjitsuTrack.ActivityFeedController do
 
   end
 
+  def delete(conn, %{"record_id" => id}) do
+    CouchjitsuTrack.Record.delete(id)
+    conn
+    |> send_resp(204, "")
+  end
+
   defp create_activity_with_record(user_id, record) do
     activity = Activity.changeset(%Activity{}, %{user_id: user_id, name: record["activity_id"], default_duration: record["duration"]})
     |> Activity.add

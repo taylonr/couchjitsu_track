@@ -7,10 +7,28 @@
         <%= get_date date %>
       </h2>
       <%= for item <- get_events @events, date do %>
-        <%= render "event.html", e: item %>
+        <%= render "event.html", conn: @conn, e: item %>
       <% end %>
     </div>
   </div>
   <div class="column"></div>
 <% end %>
 </div>
+<script type="text/javascript">
+  (function(){
+    $('.content').on('click', 'span', function(el){
+      var csrf = $('meta[name=csrf]')[0].content;
+      var id = $(el.currentTarget).data('id');
+      $.ajax({
+        url: '/activityfeed/' + id,
+        headers: {
+          "X-CSRF-TOKEN": csrf
+        },
+        type: 'DELETE',
+        success: function(result) {
+          $(el.currentTarget).parents('.event').remove()
+        }
+      });
+    });
+  })();
+</script>

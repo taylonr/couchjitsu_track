@@ -22,13 +22,13 @@ defmodule CouchjitsuTrack.Router do
 
     get "/statistics", StatisticsController, :index
   end
-
   scope "/activityfeed", CouchjitsuTrack do
     pipe_through :browser
 
     get "/", ActivityFeedController, :index
     get "/new", ActivityFeedController, :new
     post "/new", ActivityFeedController, :create
+    delete "/:record_id", ActivityFeedController, :delete
   end
 
   scope "/auth", CouchjitsuTrack do
