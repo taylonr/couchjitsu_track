@@ -6,6 +6,8 @@ defmodule CouchjitsuTrack.Activity do
         field :name
         field :user_id, :integer
         field :default_duration, :float
+
+        belongs_to :category, CouchjitsuTrack.Category
     end
 
     @required_fields ~w(name user_id)

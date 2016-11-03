@@ -42,6 +42,7 @@ defmodule CouchjitsuTrack.Router do
     pipe_through :browser
 
     get "/", UserController, :index
+    post "/", UserController, :create
   end
 
   # Other scopes may use custom stacks.

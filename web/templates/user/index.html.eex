@@ -1,17 +1,38 @@
-<div class="ui form">
-    <div class="field">
-        <label>Category</label>
-        <input type="text" class="ui input" />
+<h2>Categories</h2>
+<%= for category <- @categories do %>
+    <h3><%= category.name %></h3>
+    <%= for activity <- category.activities do %>
+        <div class="ui red basic label"><%= activity.name %></div>
+    <% end %>
+<% end %>
+
+<hr />
+
+<h2>Create a category</h2>
+<%= form_for @changeset, user_path(@conn, :create), fn f -> %>
+    <div class="ui equal width form">
+        <div class="fields">
+            <div class="field">
+                <label>Category</label>
+                <%= text_input f, :name, class: "ui input" %>
+            </div>
+            <div class="field">
+                <label>Activities</label>
+                <div class="ui fluid multiple search selection dropdown">
+                    <input type="hidden" name="category[activities]">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Select Activities</div>
+                    <div class="menu">
+                        <%= for act <- @unclaimed do %>
+                            <div class="item" data-value="<%= act.id %>"><%= act.name %></div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="ui right floated primary button">Create</button>
     </div>
-    <div class="field">
-        <select class="ui fluid dropdown" multiple="">
-            <option>BJJ</option>
-            <option>Judo</option>
-            <option>no-gi</option>
-            <option>sparring</option>
-        </select>
-    </div>
-</div>
+<% end %>
 <script type="text/javascript">
   (function(){
     $('.dropdown').dropdown();

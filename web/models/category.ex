@@ -4,7 +4,7 @@ defmodule CouchjitsuTrack.Category do
   schema "categories" do
     field :name, :string
     belongs_to :user, CouchjitsuTrack.User
-
+    has_many :activities, CouchjitsuTrack.Activity
     timestamps()
   end
 
