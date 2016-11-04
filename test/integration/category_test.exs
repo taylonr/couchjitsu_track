@@ -34,4 +34,5 @@ defmodule CategoryIntegrationTests do
 
         assert activity.name == "Unassigned Activity"
     end
+
 end

@@ -23,4 +23,19 @@ defmodule CouchjitsuTrack.Category.Query do
 
         all(query)
     end
+
+    def create_category(category) do
+        {:ok, created} = insert(category)
+
+        created
+    end
+
+    def set_category_on_activities(activities, category_id) do
+        ids = activities
+        |> String.split(",")
+        |> Enum.map(&String.to_integer/1)
+
+        from(a in Activity, where: a.id in ^ids)
+        |> update_all(set: [category_id: category_id])
+    end
 end

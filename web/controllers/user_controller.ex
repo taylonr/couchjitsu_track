@@ -14,11 +14,15 @@ defmodule CouchjitsuTrack.UserController do
 
         changeset = Category.changeset(%Category{})
 
-        render conn, "index.html", categories: categories, unclaimed: unclaimed_activities, changeset: changeset
+        render conn, "index.html", categories: categories, unclaimed: unclaimed_activities, changeset: changeset, user: user_id
     end
 
     def create(conn, %{"category" => category}) do
-        IO.inspect(category)
+        new_category = Category.changeset(%Category{}, category)
+        |> create_category()
+
+        set_category_on_activities(category["activities"], new_category.id)
+
         redirect(conn, to: "/user")
     end
 end
