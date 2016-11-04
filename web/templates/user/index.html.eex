@@ -36,6 +36,8 @@
 <% end %>
 <script type="text/javascript">
   (function(){
-    $('.dropdown').dropdown();
+    $('.dropdown').dropdown({
+        forceSelection: false
+    });
   })();
 </script>
