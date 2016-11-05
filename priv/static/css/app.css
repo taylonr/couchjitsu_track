@@ -672,6 +672,34 @@ footer {
 /*******************************
          Site Overrides
 *******************************/
+
+.homepage p {
+  font-size: 2em;
+  line-height: 1.7;
+}
+
+.homepage h1 {
+  font-size: 4em;
+  text-align: center;
+}
+
+.homepage h2 {
+  text-align: center;
+  margin-top: -50px;
+  color: gray;
+}
+
+.homepage a {
+  color: #DB2828;
+}
+
+.homepage ul {
+  list-style: none;
+  font-size: 1.7em;
+  text-align: center;
+  font-weight: bold;
+  line-height: 2;
+}
 /*!
  * # Semantic UI 2.2.4 - Button
  * http://github.com/semantic-org/semantic-ui/

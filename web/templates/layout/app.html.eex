@@ -21,9 +21,9 @@
           <a href='http://couchjitsu.com'><img src="<%= static_path(@conn, "/assets/couchjitsu_large_logo.png") %>" class="ui mini image" /></a>
         </div>
         <%= if(@conn.assigns[:current_user]) do %>
-          <a href='/activityfeed' class='item'><i class='ui clock icon'></i>History</a>
-          <a href='/activityfeed/new' class='item'><i class='ui plus icon'></i>New</a>
-          <a href='/statistics' class='item'><i class='ui line chart icon'></i>Statistics</a>
+          <a href='/activityfeed' class='item <%= active_class(@conn, activity_feed_path(@conn, :index)) %>'><i class='ui clock icon'></i>History</a>
+          <a href='/activityfeed/new' class='item <%= active_class(@conn, activity_feed_path(@conn, :new)) %>'><i class='ui plus icon'></i>New</a>
+          <a href='/statistics' class='item <%= active_class(@conn, statistics_path(@conn, :index)) %>'><i class='ui line chart icon'></i>Statistics</a>
         <% end %>
 
         <div class='right menu'>
@@ -39,10 +39,5 @@
       <main class='ui top margined attached container' role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
-
-
   </body>
-  <footer>
-    <label class="tiny basic label"><%= System.get_env("HEROKU_SLUG_COMMIT") %></label>
-  </footer>
 </html>
