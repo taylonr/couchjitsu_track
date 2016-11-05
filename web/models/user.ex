@@ -22,6 +22,10 @@ defmodule CouchjitsuTrack.User do
         CouchjitsuTrack.Repo.one(query)
     end
 
+    def find_by_id(id) do
+        CouchjitsuTrack.Repo.get_by(__MODULE__, id: id)
+    end
+
     def add(user) do
        {:ok, created_user} = user
         |> changeset

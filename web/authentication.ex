@@ -7,11 +7,13 @@ defmodule CouchjitsuTrack.Plugs.RequireAuthentication do
   end
 
   def call(conn, _) do
-    user = get_session(conn, :current_user)
-    case user do
+    user_id = conn.cookies["user_id"]
+
+    case user_id do
       nil ->
         conn |> redirect(to: "/") |> halt
       _ ->
+        user = CouchjitsuTrack.User.find_by_id(user_id)
         conn |> assign(:current_user, user)
     end
   end

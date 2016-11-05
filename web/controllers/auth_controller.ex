@@ -22,7 +22,12 @@ defmodule CouchjitsuTrack.AuthController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-      put_session(conn, :current_user, CouchjitsuTrack.Oauth.get_user(auth))
+      user = CouchjitsuTrack.Oauth.get_user(auth)
+      expiration = 60*60*24*7
+
+      Plug.Conn.put_resp_cookie(conn, "user_id", "#{user.id}", max_age: expiration)
+      |> Plug.Conn.put_resp_cookie("user_name", user.name, max_age: expiration)
+      |> put_session(:current_user, CouchjitsuTrack.Oauth.get_user(auth))
       |> redirect(to: "/activityfeed/new")
   end
 end

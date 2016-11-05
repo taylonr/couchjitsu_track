@@ -7,7 +7,7 @@ defmodule CouchjitsuTrack.ActivityFeedController do
   plug CouchjitsuTrack.Plugs.RequireAuthentication
 
   def index(conn, _params) do
-      user = Plug.Conn.get_session(conn, :current_user)
+      user = conn.assigns[:current_user]
 
       history = CouchjitsuTrack.ActivityHistory.get_history_for_user(user.id)
 
