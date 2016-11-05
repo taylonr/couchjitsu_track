@@ -1,0 +1,10 @@
+<div class="raised red card">
+    <div class="content">
+        <div class="header"><%= @stat.name %></div>
+        <div class="description">
+            <div class="ui statistic">
+                <div class="value"><%= @stat.sum %></div>
+            </div>
+        </div>
+    </div>
+</div>

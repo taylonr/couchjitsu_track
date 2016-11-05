@@ -4,7 +4,11 @@ defmodule CouchjitsuTrack.StatisticsController do
     plug CouchjitsuTrack.Plugs.RequireAuthentication
 
     def index(conn, _params) do
-        stats = CouchjitsuTrack.StatisticsQuery.get_statistics(conn.assigns.current_user.id)
+        {{y, m, _}, _} = :calendar.local_time()
+
+        stats = CouchjitsuTrack.StatisticsQuery.get_statistics(conn.assigns.current_user.id, m, y)
+
+        IO.inspect(stats)
 
         render conn, "index.html", stats: stats
     end

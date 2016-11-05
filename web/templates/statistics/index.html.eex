@@ -1,4 +1,26 @@
 <h2>Statistics</h2>
-<%= for s <- @stats do %>
-    <div><%= s.name %> -- <%= s.month %>, <%= s.year %> : <%= s.sum %></div>
+
+<h3>Current Month</h3>
+<hr/>
+<div class="ui three cards">
+    <%= for cm <- @stats.current_month do %>
+        <%= render "statistic_card.html", conn: @conn, stat: cm %>
+    <% end %>
+</div>
+
+<h3>Current Year</h3>
+<hr/>
+<div class="ui three cards">
+<%= for cy <- @stats.current_year do %>
+    <%= render "statistic_card.html", conn: @conn, stat: cy %>
 <% end %>
+</div>
+
+<h3>All Time</h3>
+<hr />
+<div class="ui three cards">
+    <%= for at <- @stats.all_time do %>
+        <%= render "statistic_card.html", conn: @conn, stat: at %>
+    <% end %>
+</div>
+
