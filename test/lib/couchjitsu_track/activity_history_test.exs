@@ -2,7 +2,6 @@ defmodule ActivityHistoryTest do
     use ExUnit.Case
 
     alias CouchjitsuTrack.ActivityHistory
-    alias CouchjitsuTrack.Activity
 
     test "Get statistics should set max to true on the item with the highest number" do
         activities = [%{month: 1, year: 2016, hours: 10}, %{month: 2, year: 2016, hours: 5}]

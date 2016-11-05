@@ -10,7 +10,7 @@ defmodule CategoryIntegrationTests do
         Ecto.Adapters.SQL.Sandbox.checkout(CouchjitsuTrack.Repo)
         {:ok, user} = insert(%User{name: "Test User"})
         {:ok, category} = insert(%Category{name: "Test category", user: user})
-        {:ok, activity} = insert(%Activity{name: "test", default_duration: 1.0, category: category})
+        {:ok, _} = insert(%Activity{name: "test", default_duration: 1.0, category: category})
 
         categories = get_categories(user.id)
         |> Enum.at(0)
@@ -27,7 +27,7 @@ defmodule CategoryIntegrationTests do
         {:ok, category} = insert(%Category{name: "Test category", user: user})
         insert(%Activity{name: "Assigned Activity", user_id: user.id, default_duration: 1.0, category: category})
 
-        {:ok, unassigned_activity} = insert(%Activity{name: "Unassigned Activity", default_duration: 1.0, user_id: user.id})
+        {:ok, _} = insert(%Activity{name: "Unassigned Activity", default_duration: 1.0, user_id: user.id})
 
         activity = get_activities_with_no_category(user.id)
             |> Enum.at(0)
