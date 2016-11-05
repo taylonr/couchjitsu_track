@@ -16,7 +16,7 @@
   </head>
 
   <body>
-      <nav class='ui top fixed inverted menu'>
+      <nav class='ui borderless inverted stackable menu'>
         <div class='item'>
           <a href='http://couchjitsu.com'><img src="<%= static_path(@conn, "/assets/couchjitsu_large_logo.png") %>" class="ui mini image" /></a>
         </div>
@@ -36,7 +36,7 @@
         <% end %>
         </div>
       </nav>
-      <main class='ui top margined container' role="main">
+      <main class='ui top margined attached container' role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
 
