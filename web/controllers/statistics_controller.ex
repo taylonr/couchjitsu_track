@@ -1,8 +1,6 @@
 defmodule CouchjitsuTrack.StatisticsController do
     use CouchjitsuTrack.Web, :controller
 
-    plug CouchjitsuTrack.Plugs.RequireAuthentication
-
     def index(conn, _params) do
         {{y, m, _}, _} = :calendar.local_time()
 

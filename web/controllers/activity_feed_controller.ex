@@ -4,8 +4,6 @@ defmodule CouchjitsuTrack.ActivityFeedController do
   alias CouchjitsuTrack.Record
   alias CouchjitsuTrack.Activity
 
-  plug CouchjitsuTrack.Plugs.RequireAuthentication
-
   def index(conn, _params) do
       user = conn.assigns[:current_user]
 

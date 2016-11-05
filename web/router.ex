@@ -9,6 +9,11 @@ defmodule CouchjitsuTrack.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :authenticated do
+    plug :browser
+    plug CouchjitsuTrack.Plugs.RequireAuthentication
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -17,18 +22,6 @@ defmodule CouchjitsuTrack.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-
-    get "/activity/:id", ActivityController, :index
-
-    get "/statistics", StatisticsController, :index
-  end
-  scope "/activityfeed", CouchjitsuTrack do
-    pipe_through :browser
-
-    get "/", ActivityFeedController, :index
-    get "/new", ActivityFeedController, :new
-    post "/new", ActivityFeedController, :create
-    delete "/:record_id", ActivityFeedController, :delete
   end
 
   scope "/auth", CouchjitsuTrack do
@@ -38,8 +31,29 @@ defmodule CouchjitsuTrack.Router do
     get "/:provider/callback", AuthController, :callback
   end
 
+  scope "/activity", CouchjitsuTrack do
+    pipe_through :authenticated
+
+    get "/:id", ActivityController, :index
+  end
+
+  scope "/statistics", CouchjitsuTrack do
+    pipe_through :authenticated
+
+    get "/", StatisticsController, :index
+  end
+
+  scope "/activityfeed", CouchjitsuTrack do
+    pipe_through :authenticated
+
+    get "/", ActivityFeedController, :index
+    get "/new", ActivityFeedController, :new
+    post "/new", ActivityFeedController, :create
+    delete "/:record_id", ActivityFeedController, :delete
+  end
+
   scope "/user", CouchjitsuTrack do
-    pipe_through :browser
+    pipe_through :authenticated
 
     get "/", UserController, :index
     post "/", UserController, :create

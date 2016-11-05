@@ -5,8 +5,6 @@ defmodule CouchjitsuTrack.UserController do
 
     alias CouchjitsuTrack.Category
 
-    plug CouchjitsuTrack.Plugs.RequireAuthentication
-
     def index(conn, _params) do
         user_id = conn.assigns[:current_user].id
         categories = get_categories(user_id)
