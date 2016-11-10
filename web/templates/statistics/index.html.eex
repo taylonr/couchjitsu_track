@@ -1,6 +1,6 @@
 <h2>Statistics</h2>
 
-<span class="ui basic button" id="cards">Cards</span>
+<span class="ui red basic button" id="cards">Cards</span>
 <span class="ui basic button" id="charts">Charts</span>
 
     <%= render "statistic_card.html", conn: @conn, stat: @stats.current_month, title: "Current Month", type: "current_month" %>
@@ -11,14 +11,24 @@
 
 <script type="text/javascript">
     (function(){
+        var allTime,
+            month,
+            year;
+
         // Load the Visualization API and the corechart package.
         google.charts.load('current', {'packages':['corechart']});
 
         $('.charts').hide();
 
+        function toggleActiveItem(){
+            $('#cards').toggleClass('red');
+            $('#charts').toggleClass('red');
+        };
+
         $('#cards').on('click', function(){
             $('.ui.cards').show();
             $('.charts').hide();
+            toggleActiveItem();
         });
 
         function drawChart(id, data, options){
@@ -37,16 +47,12 @@
             return data;
         }
 
-        $('#charts').on('click', function(){
-            var allTime,
-                month,
-                year;
-
+        function fetchStatistics(){
             if(!allTime || !month || !year){
                 $.ajax('/api/statistics').done(function(data){
-                    var allTime = getChartData(data.stats.all_time);
-                    var month = getChartData(data.stats.current_month);
-                    var year = getChartData(data.stats.current_year);
+                    allTime = getChartData(data.stats.all_time);
+                    month = getChartData(data.stats.current_month);
+                    year = getChartData(data.stats.current_year);
                     var options = {'chartArea': {width:600, height:600}};
 
                     drawChart('all_time', allTime, options);
@@ -54,9 +60,14 @@
                     drawChart('current_year', year, options);
                 });
             }
+        }
+
+        $('#charts').on('click', function(){
+            fetchStatistics();
 
             $('.charts').show();
             $('.ui.cards').hide();
+            toggleActiveItem();
         });
     })();
 </script>
