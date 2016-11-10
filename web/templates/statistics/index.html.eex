@@ -1,7 +1,62 @@
 <h2>Statistics</h2>
 
-<%= render "statistic_card.html", conn: @conn, stat: @stats.current_month, title: "Current Month" %>
+<span class="ui basic button" id="cards">Cards</span>
+<span class="ui basic button" id="charts">Charts</span>
 
-<%= render "statistic_card.html", conn: @conn, stat: @stats.current_year, title: "Current Year" %>
+    <%= render "statistic_card.html", conn: @conn, stat: @stats.current_month, title: "Current Month", type: "current_month" %>
 
-<%= render "statistic_card.html", conn: @conn, stat: @stats.all_time, title: "All Time" %>
+    <%= render "statistic_card.html", conn: @conn, stat: @stats.current_year, title: "Current Year", type: "current_year" %>
+
+    <%= render "statistic_card.html", conn: @conn, stat: @stats.all_time, title: "All Time", type: "all_time"  %>
+
+<script type="text/javascript">
+    (function(){
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+
+        $('.charts').hide();
+
+        $('#cards').on('click', function(){
+            $('.ui.cards').show();
+            $('.charts').hide();
+        });
+
+        function drawChart(id, data, options){
+            var chart = new google.visualization.PieChart(document.getElementById(id));
+            chart.draw(data, options);
+        }
+
+        function getChartData(stats){
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Activity');
+            data.addColumn('number', 'Hours');
+            for(var i = 0; i < stats.length; i++){
+                data.addRow([stats[i].name, stats[i].sum]);
+            }
+
+            return data;
+        }
+
+        $('#charts').on('click', function(){
+            var allTime,
+                month,
+                year;
+
+            if(!allTime || !month || !year){
+                $.ajax('/api/statistics').done(function(data){
+                    var allTime = getChartData(data.stats.all_time);
+                    var month = getChartData(data.stats.current_month);
+                    var year = getChartData(data.stats.current_year);
+                    var options = {'chartArea': {width:600, height:600}};
+
+                    drawChart('all_time', allTime, options);
+                    drawChart('current_month', month, options);
+                    drawChart('current_year', year, options);
+                });
+            }
+
+            $('.charts').show();
+            $('.ui.cards').hide();
+        });
+    })();
+</script>

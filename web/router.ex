@@ -16,6 +16,8 @@ defmodule CouchjitsuTrack.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug CouchjitsuTrack.Plugs.RequireAuthentication
   end
 
   scope "/", CouchjitsuTrack do
@@ -60,7 +62,9 @@ defmodule CouchjitsuTrack.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", CouchjitsuTrack do
-  #   pipe_through :api
-  # end
+  scope "/api", CouchjitsuTrack do
+    pipe_through :api
+
+    get "/statistics", StatisticsController, :statistics
+  end
 end
