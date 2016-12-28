@@ -1,5 +1,12 @@
 <h3><%= @title %> ( <%=total @stat %>
-<i title="How you're doing compared to the previous time period." class="<%= trend(@stat, @previous) %>"></i>)</h3>
+    <%= if @type == "current_month" do %>
+        <i title="Last month you had <%= total @previous %> hours." class="<%= trend(@stat, @previous) %>"></i>
+    <% end %>
+
+    <%= if @type == "current_year" do %>
+        <i title="By this month last year you had <%= total @previous %> hours." class="<%= trend(@stat, @previous) %>"></i>
+    <% end %>
+)</h3>
 <hr />
 <div class="ui three stackable cards">
     <%= for s <- @stat do %>
