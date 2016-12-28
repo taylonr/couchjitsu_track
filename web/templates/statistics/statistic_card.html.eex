@@ -1,4 +1,5 @@
-<h3><%= @title %></h3>
+<h3><%= @title %> ( <%=total @stat %>
+<i title="How you're doing compared to the previous time period." class="<%= trend(@stat, @previous) %>"></i>)</h3>
 <hr />
 <div class="ui three stackable cards">
     <%= for s <- @stat do %>

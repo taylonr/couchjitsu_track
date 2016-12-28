@@ -3,11 +3,11 @@
 <span class="ui red basic button" id="cards">Cards</span>
 <span class="ui basic button" id="charts">Charts</span>
 
-    <%= render "statistic_card.html", conn: @conn, stat: @stats.current_month, title: "Current Month", type: "current_month" %>
+    <%= render "statistic_card.html", conn: @conn, stat: @stats.current_month, previous: @stats.previous_month, title: "Current Month", type: "current_month" %>
 
-    <%= render "statistic_card.html", conn: @conn, stat: @stats.current_year, title: "Current Year", type: "current_year" %>
+    <%= render "statistic_card.html", conn: @conn, stat: @stats.current_year, previous: @stats.previous_year, title: "Current Year", type: "current_year" %>
 
-    <%= render "statistic_card.html", conn: @conn, stat: @stats.all_time, title: "All Time", type: "all_time"  %>
+    <%= render "statistic_card.html", conn: @conn, stat: @stats.all_time, previous: 0, title: "All Time", type: "all_time"  %>
 
 <script type="text/javascript">
     (function(){
