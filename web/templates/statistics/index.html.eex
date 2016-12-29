@@ -77,6 +77,10 @@
 document.getElementById('shareBtn').onclick = function() {
   FB.ui({
     method: 'share',
+    type: 'website',
+    description: $('meta[property="og:description"]').attr('content'),
+    title: $('meta[property="og:title"]').attr('content'),
+    site_name: $('meta[property="og:site_name"]').attr('content'),
     href: 'http://track.couchjitsu.com'
   }, function(response){});
 }
