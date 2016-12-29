@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <%= ogtags(assigns) %>
-    
+
     <title>Couchjitsu Gym Time</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -46,7 +46,7 @@
   <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '1153321868054268',
+        appId      : System.get_env("GYMTIME_FACEBOOK_TEST_ID"),
         xfbml      : true,
         version    : 'v2.8'
       });
