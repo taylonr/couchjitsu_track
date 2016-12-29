@@ -7,7 +7,6 @@
     <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <%= ogtags(assigns) %>
 
     <title>Couchjitsu Gym Time</title>
