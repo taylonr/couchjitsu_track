@@ -46,7 +46,7 @@
   <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : System.get_env("GYMTIME_FACEBOOK_TEST_ID"),
+        appId      : "<%= System.get_env("GYMTIME_FACEBOOK_TEST_ID") %>",
         xfbml      : true,
         version    : 'v2.8'
       });
