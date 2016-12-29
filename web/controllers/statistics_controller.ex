@@ -7,7 +7,19 @@ defmodule CouchjitsuTrack.StatisticsController do
 
         stats = get_statistics(conn.assigns.current_user.id, m, y)
 
-        render conn, "index.html", stats: stats
+        monthly = Enum.reduce(stats.current_month, 0, fn(s, acc) -> acc + s.sum end )
+        yearly = Enum.reduce(stats.current_year, 0, fn(s, acc) -> acc + s.sum end )
+
+        ogtags = %{
+                "fb:app_id": System.get_env("GYMTIME_FACEBOOK_TEST_ID"),
+                "og:type": "website",
+                "og:url": "http://track.couchjitsu.com",
+                "og:site_name": "Couchjitsu Gym Tracker",
+                "og:title": "Current Progress",
+                "og:description": "I've trained #{monthly} hours this month which brings my total to #{yearly} for the year. Track your time with Couchjitsu"
+        }
+
+        render conn, "index.html", stats: stats, ogtags: ogtags
     end
 
     def statistics(conn, _params) do

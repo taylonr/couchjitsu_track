@@ -2,6 +2,7 @@
 
 <span class="ui red basic button" id="cards">Cards</span>
 <span class="ui basic button" id="charts">Charts</span>
+<span class="ui facebook right floated button" id="shareBtn"><i class="ui facebook icon"></i>Share Progress</span>
 
     <%= render "statistic_card.html", conn: @conn, stat: @stats.current_month, previous: @stats.previous_month, title: "Current Month", type: "current_month" %>
 
@@ -70,4 +71,13 @@
             toggleActiveItem();
         });
     })();
+</script>
+
+<script>
+document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    method: 'share',
+    href: 'http://track.couchjitsu.com'
+  }, function(response){});
+}
 </script>

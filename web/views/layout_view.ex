@@ -1,6 +1,14 @@
 defmodule CouchjitsuTrack.LayoutView do
   use CouchjitsuTrack.Web, :view
 
+  def ogtags(assigns) do
+      if assigns[:ogtags] do
+        for {key, value} <- assigns[:ogtags] do
+            raw("\t<meta property=\"#{key}\" content=\"#{value}\">\n")
+        end
+      end
+  end
+
   def get_user (conn) do
     user = Plug.Conn.get_session(conn, :current_user)
     if user do

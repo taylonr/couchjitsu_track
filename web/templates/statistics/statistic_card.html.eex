@@ -1,4 +1,4 @@
-<h3><%= @title %> ( <%=total @stat %>
+<h3><%= @title %> ( <span id="<%= @type %>_total"><%=total @stat %></span>
     <%= if @type == "current_month" do %>
         <i title="Last month you had <%= total @previous %> hours." class="<%= trend(@stat, @previous) %>"></i>
     <% end %>
