@@ -26,6 +26,6 @@ defmodule CouchjitsuTrack.Date do
     def today do
         {{y, m, d}, _} = :calendar.local_time()
 
-        "#{y}-#{m}-#{String.pad_leading("#{d}", 2, "0")}"
+        "#{y}-#{String.pad_leading("#{m}", 2, "0")}-#{String.pad_leading("#{d}", 2, "0")}"
     end
 end
