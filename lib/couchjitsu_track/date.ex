@@ -28,4 +28,13 @@ defmodule CouchjitsuTrack.Date do
 
         "#{y}-#{String.pad_leading("#{m}", 2, "0")}-#{String.pad_leading("#{d}", 2, "0")}"
     end
+
+    def day_name(1), do: "Monday"
+    def day_name(2), do: "Tuesday"
+    def day_name(3), do: "Wednesday"
+    def day_name(4), do: "Thursday"
+    def day_name(5), do: "Friday"
+    def day_name(6), do: "Saturday"
+    def day_name(7), do: "Sunday"
+    def day_name(_), do: {:error, "Invalid day number"}
 end
