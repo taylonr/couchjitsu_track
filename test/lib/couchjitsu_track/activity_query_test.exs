@@ -3,7 +3,6 @@ defmodule ActivityQueryTest do
 
     import Mock
     alias CouchjitsuTrack.Activity
-    alias CouchjitsuTrack.RecentActivity
 
     test "Should get all activities for a user" do
         with_mock CouchjitsuTrack.Repo, [all: fn(_) -> [%Activity{name: "Test"}] end] do

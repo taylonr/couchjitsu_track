@@ -39,11 +39,7 @@ defmodule CouchjitsuTrack.Mixfile do
      {:cowboy, "~> 1.0"},
      {:mix_test_watch, "~> 0.2.6"},
      {:ueberauth_facebook, "~> 0.5.0"},
-     {:mock, "~> 0.2.0"},
-     {:timex, "~> 3.0"},
-     {:timex_ecto, "~> 3.0"},
-     {:simple_bayes, "~> 0.11.0"},
-     {:stemmer,      "~> 1.0"}]
+     {:mock, "~> 0.2.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
