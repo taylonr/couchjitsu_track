@@ -29,6 +29,12 @@ defmodule CouchjitsuTrack.Date do
         "#{y}-#{String.pad_leading("#{m}", 2, "0")}-#{String.pad_leading("#{d}", 2, "0")}"
     end
 
+    def get_day_name(%Ecto.Date{} = date) do
+        date
+        |> Ecto.Date.to_erl
+        |> :calendar.day_of_the_week
+        |> get_day_name
+    end
     def get_day_name(1), do: :monday
     def get_day_name(2), do: :tuesday
     def get_day_name(3), do: :wednesday

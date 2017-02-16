@@ -48,4 +48,13 @@ defmodule DateTest do
             assert get_day_name(8) == :invalid
         end
     end
+
+    describe "when passing in an ecto date to get_day_name" do
+        test "should return the day name" do
+            name = Ecto.Date.from_erl({2017, 2, 15})
+            |> get_day_name
+
+            assert name == :wednesday
+        end
+    end
 end
