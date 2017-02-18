@@ -31,6 +31,10 @@ defmodule CouchjitsuTrack.ActivityFeedView do
     suggestion.id
   end
 
+  def get_duration(suggestion_and_score) do
+    elem(suggestion_and_score, 0).duration
+  end
+
   def show_suggestions(suggestions) when length(suggestions) > 0, do: true
   def show_suggestions(_), do: false
 

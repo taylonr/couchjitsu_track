@@ -6,7 +6,11 @@ defmodule CouchjitsuTrack.Prediction do
         end)
 
         acts = Enum.map(activities, fn a ->
-            %{name: a.name, id: a.activity_id, day_of_week: CouchjitsuTrack.Date.get_day_name(a.date)}
+            %{
+                name: a.name,
+                id: a.activity_id,
+                duration: a.default_duration,
+                day_of_week: CouchjitsuTrack.Date.get_day_name(a.date)}
         end)
 
         day_name = CouchjitsuTrack.Date.get_day_name(date)

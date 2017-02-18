@@ -38,6 +38,7 @@ defmodule CouchjitsuTrack.ActivityHistory do
                 select: %{date: r.date,
                     name: a.name,
                     time: r.duration,
+                    default_duration: a.default_duration,
                     note: r.note,
                     activity_id: a.id,
                     id: r.id

@@ -57,4 +57,10 @@ defmodule ActivityFeedViewTest do
             assert ActivityFeedView.get_id({%{id: 1}, 0.5}) == 1
         end
     end
+
+    describe "Getting the duration" do
+        test "it should return the duration" do
+            assert ActivityFeedView.get_duration({%{duration: 2}, 0.5}) == 2
+        end
+    end
 end

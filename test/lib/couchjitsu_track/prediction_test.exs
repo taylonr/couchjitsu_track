@@ -54,7 +54,13 @@ alias CouchjitsuTrack.Prediction
 
     describe "get_suggestions_for_date from activities, records and string date" do
         test "should return the list of items" do
-            activities = [%{name: "technique", activity_id: 1, date: Ecto.Date.from_erl({2017, 2, 13})}]
+            activities = [%{
+                name: "technique",
+                activity_id: 1,
+                default_duration: 2,
+                date: Ecto.Date.from_erl({2017, 2, 13})
+            }]
+            
             records = []
             date = "2017-02-20"
 

@@ -22,13 +22,16 @@ defmodule CouchjitsuTrack.ActivityFeedController do
     all_records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_span(user.id, 6)
     records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_date(user.id, date)
     suggestions = CouchjitsuTrack.Prediction.get_suggestions_for_date(all_records, records, date)
-IO.inspect(suggestions)
+
     changeset = Record.changeset(%Record{})
 
     render conn, "new.html", activities: activities, changeset: changeset, date: date, records: records, suggestions: suggestions
   end
 
   def create(conn, %{"record" => record}) do
+
+    IO.inspect(record)
+    
     case Integer.parse(record["activity_id"]) do
       {_, _} -> Record.changeset(%Record{}, record) |> Record.add
       :error -> create_activity_with_record(conn.assigns.current_user.id, record)
