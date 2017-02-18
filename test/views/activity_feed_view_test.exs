@@ -21,4 +21,24 @@ defmodule ActivityFeedViewTest do
 
         assert Enum.count(events) == 2
     end
+
+    describe "Getting the day name" do
+        test "Should return a capitalized day name" do
+            date = Ecto.Date.from_erl({2017, 2, 13})
+            name = ActivityFeedView.get_name(date)
+            assert name == "Monday"
+        end
+    end
+
+    describe "Getting the suggestion" do
+        test "it should take the name from the first element" do
+            suggestion = {"A", 0.5}
+            assert ActivityFeedView.get_suggestion(suggestion) == "A"
+        end
+
+        test "it should capitalize the name" do
+            suggestion = {"a", 0.5}
+            assert ActivityFeedView.get_suggestion(suggestion) == "A"
+        end
+    end
 end

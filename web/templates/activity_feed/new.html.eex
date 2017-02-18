@@ -1,6 +1,15 @@
 <div class="ui equal width grid">
   <div class="column">
     <h4 class="ui dividing header">Add Activity</h4>
+
+    <div>It's <%=get_name @date%>, did you do:
+      <ul>
+        <%= for s <- @suggestions do %>
+          <li><%= get_suggestion s %></li>
+        <% end %>
+      </ul>
+    </div>
+
     <%= form_for @changeset, activity_feed_path(@conn, :create), fn f -> %>
     <div class="ui form">
       <div class="fields">

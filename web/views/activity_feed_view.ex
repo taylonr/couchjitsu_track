@@ -14,4 +14,14 @@ defmodule CouchjitsuTrack.ActivityFeedView do
       |> Enum.filter(fn e -> e.date == date end)
   end
 
+  def get_name(date) do
+      CouchjitsuTrack.Date.get_day_name(date)
+      |> String.capitalize
+  end
+
+  def get_suggestion(suggestion_and_score) do
+    elem(suggestion_and_score, 0)
+    |> String.capitalize
+  end
+
 end

@@ -17,31 +17,31 @@ defmodule DateTest do
 
     describe "get_day_name" do
         test "should get :monday when the day number is 1" do
-            assert get_day_name(1) == :monday
+            assert get_day_name(1) == "monday"
         end
 
         test "should get :tuesday when the day number is 2" do
-            assert get_day_name(2) == :tuesday
+            assert get_day_name(2) == "tuesday"
         end
 
         test "should get :wednesday when the day number is 3" do
-            assert get_day_name(3) == :wednesday
+            assert get_day_name(3) == "wednesday"
         end
 
         test "should get :thursday when the day number is 4" do
-            assert get_day_name(4) == :thursday
+            assert get_day_name(4) == "thursday"
         end
 
         test "should get :friday when the day number is 5" do
-            assert get_day_name(5) == :friday
+            assert get_day_name(5) == "friday"
         end
 
         test "should get :saturday when the day number is 6" do
-            assert get_day_name(6) == :saturday
+            assert get_day_name(6) == "saturday"
         end
 
         test "should get :sunday when the day number is 7" do
-            assert get_day_name(7) == :sunday
+            assert get_day_name(7) == "sunday"
         end
 
         test "should get :invalid when the day number is anything else" do
@@ -54,7 +54,19 @@ defmodule DateTest do
             name = Ecto.Date.from_erl({2017, 2, 15})
             |> get_day_name
 
-            assert name == :wednesday
+            assert name == "wednesday"
+        end
+    end
+
+    describe "when passing in an erlang date to get_day_name" do
+        test "should return the day name" do
+            assert get_day_name({2017, 2, 15}) == "wednesday"
+        end
+    end
+
+    describe "when passing in a string" do
+        test "should return the day name" do
+            assert get_day_name("2017-02-15") == "wednesday"
         end
     end
 end

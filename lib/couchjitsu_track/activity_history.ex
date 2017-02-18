@@ -28,6 +28,25 @@ defmodule CouchjitsuTrack.ActivityHistory do
         CouchjitsuTrack.Repo.all(query)
     end
 
+    def get_history_for_user_and_span(user_id, number_of_months) do
+        interval =%Postgrex.Interval{months: number_of_months}
+
+        query = from r in Record,
+                join: a in Activity, on: r.activity_id == a.id,
+                where: a.user_id == ^user_id and
+                    fragment("? > now() - ? * Interval '1 month'", r.date, ^number_of_months),
+                select: %{date: r.date,
+                    name: a.name,
+                    time: r.duration,
+                    note: r.note,
+                    activity_id: a.id,
+                    id: r.id
+                },
+                order_by: [desc: r.date]
+
+        CouchjitsuTrack.Repo.all(query)
+    end
+
     @doc """
     Gets the history for a specific date and user.  This can be used to find what activities a user did on a specific day.
     """

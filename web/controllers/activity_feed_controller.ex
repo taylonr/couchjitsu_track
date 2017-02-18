@@ -19,11 +19,13 @@ defmodule CouchjitsuTrack.ActivityFeedController do
     date = params["date"] || CouchjitsuTrack.Date.today
 
     activities = CouchjitsuTrack.Activity.Query.get_for_user(user.id)
+    all_records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_span(user.id, 3)
     records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_date(user.id, date)
+    suggestions = CouchjitsuTrack.Prediction.get_suggestions_for_date(all_records, records, date)
 
     changeset = Record.changeset(%Record{})
 
-    render conn, "new.html", activities: activities, changeset: changeset, date: date, records: records
+    render conn, "new.html", activities: activities, changeset: changeset, date: date, records: records, suggestions: suggestions
   end
 
   def create(conn, %{"record" => record}) do

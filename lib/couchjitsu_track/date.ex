@@ -35,12 +35,24 @@ defmodule CouchjitsuTrack.Date do
         |> :calendar.day_of_the_week
         |> get_day_name
     end
-    def get_day_name(1), do: :monday
-    def get_day_name(2), do: :tuesday
-    def get_day_name(3), do: :wednesday
-    def get_day_name(4), do: :thursday
-    def get_day_name(5), do: :friday
-    def get_day_name(6), do: :saturday
-    def get_day_name(7), do: :sunday
+
+    def get_day_name({_, _, _} = date) do
+        date
+        |> :calendar.day_of_the_week
+        |> get_day_name
+    end
+
+    def get_day_name(date) when is_binary(date) do
+        [year, month, day] = String.split(date, "-")
+        get_day_name({String.to_integer(year), String.to_integer(month), String.to_integer(day)})
+    end
+
+    def get_day_name(1), do: "monday"
+    def get_day_name(2), do: "tuesday"
+    def get_day_name(3), do: "wednesday"
+    def get_day_name(4), do: "thursday"
+    def get_day_name(5), do: "friday"
+    def get_day_name(6), do: "saturday"
+    def get_day_name(7), do: "sunday"
     def get_day_name(_), do: :invalid
 end
