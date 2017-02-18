@@ -30265,4 +30265,5 @@ select.ui.dropdown {
 }ul {
     list-style: none;
     padding-left: 0px;
+    cursor: pointer;
 }
