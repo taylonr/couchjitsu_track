@@ -20,8 +20,15 @@ defmodule CouchjitsuTrack.ActivityFeedView do
   end
 
   def get_suggestion(suggestion_and_score) do
-    elem(suggestion_and_score, 0)
-    |> String.capitalize
+    suggestion = elem(suggestion_and_score, 0)
+
+    String.capitalize(suggestion.name)
+  end
+
+  def get_id(suggestion_and_score) do
+    suggestion = elem(suggestion_and_score, 0)
+
+    suggestion.id
   end
 
   def show_suggestions(suggestions) when length(suggestions) > 0, do: true

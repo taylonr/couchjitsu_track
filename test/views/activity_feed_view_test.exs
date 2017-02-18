@@ -32,12 +32,12 @@ defmodule ActivityFeedViewTest do
 
     describe "Getting the suggestion" do
         test "it should take the name from the first element" do
-            suggestion = {"A", 0.5}
+            suggestion = {%{name: "A"}, 0.5}
             assert ActivityFeedView.get_suggestion(suggestion) == "A"
         end
 
         test "it should capitalize the name" do
-            suggestion = {"a", 0.5}
+            suggestion = {%{name: "a"}, 0.5}
             assert ActivityFeedView.get_suggestion(suggestion) == "A"
         end
     end
@@ -49,6 +49,12 @@ defmodule ActivityFeedViewTest do
 
         test "it should return false when suggestions are not present" do
             assert ActivityFeedView.show_suggestions([]) == false
+        end
+    end
+
+    describe "Getting the id" do
+        test "it should return the id" do
+            assert ActivityFeedView.get_id({%{id: 1}, 0.5}) == 1
         end
     end
 end

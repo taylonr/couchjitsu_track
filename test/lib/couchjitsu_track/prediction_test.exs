@@ -11,39 +11,39 @@ alias CouchjitsuTrack.Prediction
 
     describe "get_suggestions/3" do
         test "Should return the name of activities" do
-            activities = [%{"name" => "technique", "day_of_week" => "monday"}]
+            activities = [%{name: "technique", day_of_week: "monday"}]
 
             suggestion = Prediction.get_suggestions(activities, "monday")
             |> Enum.at(0)
             |> elem(0)
 
-            assert suggestion == "technique"
+            assert suggestion.name == "technique"
         end
 
         test "Should return all activities with score greater than 0" do
-            activities = [%{"name" => "technique", "day_of_week" => "monday"},
-                        %{"name" => "judo", "day_of_week" => "tuesday"}]
+            activities = [%{name: "technique", day_of_week: "monday"},
+                        %{name: "judo", day_of_week: "tuesday"}]
 
             suggestions = Prediction.get_suggestions(activities, "monday")
             |> Enum.map(&(elem(&1, 0)))
 
-            assert suggestions == ["technique"]
+            assert suggestions == [%{name: "technique", day_of_week: "monday"}]
         end
 
         test "Should not include activities that are already entered today" do
-            activities = [%{"name" => "technique", "day_of_week" => "monday"},
-                        %{"name" => "sparring", "day_of_week" => "monday"}]
+            activities = [%{name: "technique", day_of_week: "monday"},
+                        %{name: "sparring", day_of_week: "monday"}]
 
             suggestions = Prediction.get_suggestions(activities, "monday", ["technique"])
             |> Enum.map(&(elem(&1, 0)))
 
-            assert suggestions == ["sparring"]
+            assert suggestions == [%{name: "sparring", day_of_week: "monday"}]
         end
 
         test "Should include at most two recommendations" do
-            activities = [%{"name" => "technique", "day_of_week" => "monday"},
-                        %{"name" => "judo", "day_of_week" => "monday"},
-                        %{"name" => "sparring", "day_of_week" => "monday"}]
+            activities = [%{name: "technique", day_of_week: "monday"},
+                        %{name: "judo", day_of_week: "monday"},
+                        %{name: "sparring", day_of_week: "monday"}]
 
             count = Prediction.get_suggestions(activities, "monday")
             |> Enum.count()
@@ -54,7 +54,7 @@ alias CouchjitsuTrack.Prediction
 
     describe "get_suggestions_for_date from activities, records and string date" do
         test "should return the list of items" do
-            activities = [%{:name => "technique", :date => Ecto.Date.from_erl({2017, 2, 13})}]
+            activities = [%{name: "technique", activity_id: 1, date: Ecto.Date.from_erl({2017, 2, 13})}]
             records = []
             date = "2017-02-20"
 
@@ -62,7 +62,7 @@ alias CouchjitsuTrack.Prediction
             |> Enum.at(0)
             |> elem(0)
 
-            assert suggestion == "technique"
+            assert suggestion.name == "technique"
         end
     end
 end

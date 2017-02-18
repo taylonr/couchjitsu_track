@@ -6,7 +6,7 @@ defmodule CouchjitsuTrack.Prediction do
         end)
 
         acts = Enum.map(activities, fn a ->
-            %{"name" => a.name, "day_of_week" => CouchjitsuTrack.Date.get_day_name(a.date)}
+            %{name: a.name, id: a.activity_id, day_of_week: CouchjitsuTrack.Date.get_day_name(a.date)}
         end)
 
         day_name = CouchjitsuTrack.Date.get_day_name(date)
@@ -18,10 +18,10 @@ defmodule CouchjitsuTrack.Prediction do
         bayes = SimpleBayes.init
 
         Enum.reject(activities, fn a ->
-            a["day_of_week"] == :invalid
+            a.day_of_week == :invalid
         end)
         |> Enum.map(fn a ->
-            SimpleBayes.train(bayes, a["name"], a["day_of_week"])
+            SimpleBayes.train(bayes, a, a.day_of_week)
         end)
 
         SimpleBayes.classify(bayes, day_of_week)
@@ -40,7 +40,7 @@ defmodule CouchjitsuTrack.Prediction do
 
     defp activity_in_today(activity, today) do
         Enum.any?(today, fn t ->
-            t == elem(activity, 0)
+            t == elem(activity, 0).name
         end)
     end
 end

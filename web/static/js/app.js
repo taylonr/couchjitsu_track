@@ -19,5 +19,3 @@ import "phoenix_html";
 // paths "./socket" or full ones "web/static/js/socket".
 
 import { Socket } from "phoenix";
-
-import record from './record'

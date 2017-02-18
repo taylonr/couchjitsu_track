@@ -6,7 +6,7 @@
       <div class="ui info message">It's <%=get_name @date%>, did you do:
         <ul>
           <%= for s <- @suggestions do %>
-            <li><a><%= get_suggestion s %></a></li>
+            <li><a data-id="<%= get_id s %>"><%= get_suggestion s %></a></li>
           <% end %>
         </ul>
       </div>
