@@ -3,10 +3,10 @@
     <h4 class="ui dividing header">Add Activity</h4>
 
     <%= if show_suggestions @suggestions do %>
-      <div>It's <%=get_name @date%>, did you do:
+      <div class="ui info message">It's <%=get_name @date%>, did you do:
         <ul>
           <%= for s <- @suggestions do %>
-            <li><%= get_suggestion s %></li>
+            <li><a><%= get_suggestion s %></a></li>
           <% end %>
         </ul>
       </div>

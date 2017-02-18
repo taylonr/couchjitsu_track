@@ -46,7 +46,8 @@
 
 	__webpack_require__(1);
 	__webpack_require__(10);
-	module.exports = __webpack_require__(11);
+	__webpack_require__(12);
+	module.exports = __webpack_require__(13);
 
 
 /***/ },
@@ -65,6 +66,13 @@
 /* 8 */,
 /* 9 */,
 /* 10 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 11 */,
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10290,23 +10298,23 @@
 
 
 /***/ },
-/* 11 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	__webpack_require__(12);
+	__webpack_require__(14);
 
-	var _phoenix = __webpack_require__(13);
+	var _phoenix = __webpack_require__(15);
 
-	var _record = __webpack_require__(14);
+	var _record = __webpack_require__(16);
 
 	var _record2 = _interopRequireDefault(_record);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 12 */
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10344,7 +10352,7 @@
 
 
 /***/ },
-/* 13 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function(exports){
@@ -11376,21 +11384,18 @@
 
 
 /***/ },
-/* 14 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 
-	var _socket = __webpack_require__(15);
+	var _socket = __webpack_require__(17);
 
 	var _socket2 = _interopRequireDefault(_socket);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	$(function () {
-	  //   let ul = $("ul#show-list")
-	  //   if (ul.length) {
-	  // var id = ul.data("id")
 	  var topic = "records:76";
 
 	  // Join the topic
@@ -11400,7 +11405,6 @@
 	  }).receive("error", function (resp) {
 	    console.log("Unable to join topic", topic);
 	  });
-	  //   }
 
 	  var addRecord = function addRecord(name) {
 	    channel.push("add", { name: name }).receive("ok", function (payload) {
@@ -11408,21 +11412,14 @@
 	    });
 	  };
 
-	  // $('.form').on('click', 'button', function(e){
-	  //   e.preventDefault();
-	  //   addRecord("judo");
-
-	  //   console.log($('form').serialize());
-	  // });
-
 	  channel.on("add", function (p) {
 	    console.log(p);
 	  });
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 15 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11431,7 +11428,7 @@
 	  value: true
 	});
 
-	var _phoenix = __webpack_require__(13);
+	var _phoenix = __webpack_require__(15);
 
 	var socket = new _phoenix.Socket("/socket", { params: { token: window.userToken } });
 
