@@ -41,4 +41,14 @@ defmodule ActivityFeedViewTest do
             assert ActivityFeedView.get_suggestion(suggestion) == "A"
         end
     end
+
+    describe "Showing suggestions" do
+        test "it should return true when suggestions are present" do
+            assert ActivityFeedView.show_suggestions([{"A", 0.5}]) == true
+        end
+
+        test "it should return false when suggestions are not present" do
+            assert ActivityFeedView.show_suggestions([]) == false
+        end
+    end
 end

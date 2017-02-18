@@ -24,4 +24,7 @@ defmodule CouchjitsuTrack.ActivityFeedView do
     |> String.capitalize
   end
 
+  def show_suggestions(suggestions) when length(suggestions) > 0, do: true
+  def show_suggestions(_), do: false
+
 end
