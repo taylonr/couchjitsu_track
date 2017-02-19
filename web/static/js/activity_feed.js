@@ -3,7 +3,7 @@ $(function () {
         return $('input[name="_csrf_token"]').val();
     }
 
-    $('ul').on('click', 'a', function (ev) {
+    $('#suggestions').on('click', 'a', function (ev) {
         var link = $(ev.currentTarget);
 
         var data = {
@@ -21,6 +21,20 @@ $(function () {
             url: '/activityfeed/new'
         }).done(function () {
             location.reload();
+        });
+    });
+
+    $('#record_date').on('change', () => {
+        $.ajax({
+            url: '/activityfeed/suggestions/' + $('#record_date').val()
+        }).done((response) => {
+            $('#suggestions').html(response);
+        });
+
+        $.ajax({
+            url: '/activityfeed/records/' + $('#record_date').val()
+        }).done((response) => {
+            $('.ui.centered.feed').html(response);
         });
     });
 });

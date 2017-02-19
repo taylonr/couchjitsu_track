@@ -1,0 +1,3 @@
+<%= for item <- @records do %>
+    <%= render "event.html", e: item %>
+<% end %>

@@ -52,6 +52,8 @@ defmodule CouchjitsuTrack.Router do
     get "/new", ActivityFeedController, :new
     post "/new", ActivityFeedController, :create
     delete "/:record_id", ActivityFeedController, :delete
+    get "/suggestions/:date", ActivityFeedController, :suggestions
+    get "/records/:date", ActivityFeedController, :records
   end
 
   scope "/user", CouchjitsuTrack do

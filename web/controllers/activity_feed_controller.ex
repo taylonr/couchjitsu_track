@@ -19,8 +19,10 @@ defmodule CouchjitsuTrack.ActivityFeedController do
     date = params["date"] || CouchjitsuTrack.Date.today
 
     activities = CouchjitsuTrack.Activity.Query.get_for_user(user.id)
-    all_records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_span(user.id, 3)
+
     records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_date(user.id, date)
+
+    all_records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_span(user.id, 3)
     suggestions = CouchjitsuTrack.Prediction.get_suggestions_for_date(all_records, records, date)
 
     changeset = Record.changeset(%Record{})
@@ -49,6 +51,31 @@ defmodule CouchjitsuTrack.ActivityFeedController do
     CouchjitsuTrack.Record.delete(id)
     conn
     |> send_resp(204, "")
+  end
+
+  def suggestions(conn, %{"date" => date}) do
+    user = conn.assigns[:current_user]
+    suggestions = get_suggestions(user.id, date)
+
+    conn
+    |> put_layout(false)
+    |> render "suggestions.html", date: date, suggestions: suggestions
+  end
+
+  def records(conn, %{"date" => date}) do
+    user = conn.assigns[:current_user]
+    records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_date(user.id, date)
+
+    conn
+    |> put_layout(false)
+    |> render "events.html", records: records
+  end
+
+  defp get_suggestions(user_id, date) do
+    records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_date(user_id, date)
+
+    all_records = CouchjitsuTrack.ActivityHistory.get_history_for_user_and_span(user_id, 3)
+    CouchjitsuTrack.Prediction.get_suggestions_for_date(all_records, records, date)
   end
 
   defp create_activity_with_record(user_id, record) do

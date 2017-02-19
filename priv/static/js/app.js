@@ -10307,9 +10307,9 @@
 
 	var _phoenix = __webpack_require__(15);
 
-	var _prediction = __webpack_require__(18);
+	var _activity_feed = __webpack_require__(17);
 
-	var _prediction2 = _interopRequireDefault(_prediction);
+	var _activity_feed2 = _interopRequireDefault(_activity_feed);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11385,8 +11385,7 @@
 
 /***/ },
 /* 16 */,
-/* 17 */,
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -11396,7 +11395,7 @@
 	        return $('input[name="_csrf_token"]').val();
 	    }
 
-	    $('ul').on('click', 'a', function (ev) {
+	    $('#suggestions').on('click', 'a', function (ev) {
 	        var link = $(ev.currentTarget);
 
 	        var data = {
@@ -11414,6 +11413,20 @@
 	            url: '/activityfeed/new'
 	        }).done(function () {
 	            location.reload();
+	        });
+	    });
+
+	    $('#record_date').on('change', function () {
+	        $.ajax({
+	            url: '/activityfeed/suggestions/' + $('#record_date').val()
+	        }).done(function (response) {
+	            $('#suggestions').html(response);
+	        });
+
+	        $.ajax({
+	            url: '/activityfeed/records/' + $('#record_date').val()
+	        }).done(function (response) {
+	            $('.ui.centered.feed').html(response);
 	        });
 	    });
 	});
