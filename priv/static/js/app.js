@@ -11397,11 +11397,12 @@
 
 	    $('#suggestions').on('click', 'a', function (ev) {
 	        var link = $(ev.currentTarget);
+	        var date = $('#record_date').val();
 
 	        var data = {
 	            record: {
 	                activity_id: link.data('id'),
-	                date: $('#record_date').val(),
+	                date: date,
 	                duration: link.data('duration')
 	            },
 	            _csrf_token: getCSRFTokenValue()
@@ -11412,7 +11413,7 @@
 	            data: data,
 	            url: '/activityfeed/new'
 	        }).done(function () {
-	            location.reload();
+	            location.search = '?date=' + date;
 	        });
 	    });
 

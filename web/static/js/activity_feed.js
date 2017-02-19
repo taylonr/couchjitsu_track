@@ -4,12 +4,13 @@ $(function () {
     }
 
     $('#suggestions').on('click', 'a', function (ev) {
-        var link = $(ev.currentTarget);
+        const link = $(ev.currentTarget);
+        const date = $('#record_date').val();
 
-        var data = {
+        const data = {
             record: {
                 activity_id: link.data('id'),
-                date: $('#record_date').val(),
+                date: date,
                 duration: link.data('duration')
             },
             _csrf_token: getCSRFTokenValue()
@@ -20,7 +21,7 @@ $(function () {
             data: data,
             url: '/activityfeed/new'
         }).done(function () {
-            location.reload();
+            location.search = '?date=' + date;
         });
     });
 
