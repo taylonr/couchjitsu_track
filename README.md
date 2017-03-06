@@ -1,6 +1,11 @@
 # CouchjitsuTrack
 
-To start your Phoenix app:
+## Building
+Track is an Elixir Phoenix back end with some jQuery for the front end. To build & run the application, you'll need to install Elixir and Phoenix.  The [Phoenix Framework](http://www.phoenixframework.org/docs/installation) website has a good introduction in how to install it.
+
+In addition to Elixir, you'll need a [Postgres](https://www.postgresql.org/download/) instance installed locally. 
+
+After those stps are done, you can launch the application by:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
