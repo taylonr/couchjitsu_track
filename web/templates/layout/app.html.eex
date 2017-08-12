@@ -11,6 +11,7 @@
 
     <title>Couchjitsu Gym Time</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="manifest" href="<%= static_path(@conn, "/manifest.json") %>">
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/semantic.js") %>"></script>
@@ -43,6 +44,12 @@
       </main>
   </body>
   <script>
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker
+           .register('<%= static_path(@conn, "/service_worker.js") %>')
+           .then(function() { console.log("Service Worker Registered"); });
+    }
+
     window.fbAsyncInit = function() {
       FB.init({
         appId      : "<%= System.get_env("GYMTIME_FACEBOOK_TEST_ID") %>",

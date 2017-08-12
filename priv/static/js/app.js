@@ -10307,7 +10307,7 @@
 
 	var _phoenix = __webpack_require__(15);
 
-	var _activity_feed = __webpack_require__(17);
+	var _activity_feed = __webpack_require__(16);
 
 	var _activity_feed2 = _interopRequireDefault(_activity_feed);
 
@@ -11384,8 +11384,7 @@
 
 
 /***/ },
-/* 16 */,
-/* 17 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';

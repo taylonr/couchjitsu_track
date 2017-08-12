@@ -9,7 +9,8 @@ defmodule CouchjitsuTrack.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :couchjitsu_track, gzip: false,
-    only: ~w(css assets fonts images js themes favicon.ico robots.txt)
+    only: ~w(css assets fonts images js themes favicon.ico robots.txt
+      service_worker.js manifest.json)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

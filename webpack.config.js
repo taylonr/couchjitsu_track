@@ -29,7 +29,9 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin("css/app.css"),
     new CopyWebpackPlugin([
-      {from: './semantic/dist/assets', to: 'assets'}
+      {from: './semantic/dist/assets', to: 'assets'},
+      {from: './web/static/assets/service_worker.js', to: './'},
+      {from: './web/static/assets/manifest.json', to: './'}
     ]),
     new CopyWebpackPlugin([
       { from: './semantic/dist/semantic.js', to: 'js' }
