@@ -1,4 +1,10 @@
 {
   "short_name": "GymTime",
-  "name": "CouchJitsu's GymTime"
+  "name": "CouchJitsu's GymTime",
+  "start_url": "/",
+  "icons": [{
+    "src": "./assets/couchjitsu_large_logo.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }]
 }

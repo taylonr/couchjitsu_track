@@ -12,10 +12,6 @@
     <title>Couchjitsu Gym Time</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="manifest" href="<%= static_path(@conn, "/manifest.json") %>">
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-    <script src="<%= static_path(@conn, "/js/semantic.js") %>"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
 
   <body>
@@ -42,6 +38,10 @@
       <main class='ui top margined attached container' role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js" async></script>
+    <script src="<%= static_path(@conn, "/js/app.js") %>" async></script>
+    <script src="<%= static_path(@conn, "/js/semantic.js") %>" async></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" async></script>
   </body>
   <script>
   if('serviceWorker' in navigator) {
