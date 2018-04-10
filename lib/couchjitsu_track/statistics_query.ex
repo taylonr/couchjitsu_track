@@ -4,6 +4,12 @@ defmodule CouchjitsuTrack.StatisticsQuery do
 
     alias CouchjitsuTrack.{Category, Activity, Record}
 
+    def get_statistics(user_id) do
+        stats = query_statistics(user_id);
+        Enum.group_by(stats, fn s -> s.year end)
+            |> Enum.map(&get_sums/1)
+    end
+
     def get_statistics(user_id, month, year) do
         stats = query_statistics(user_id)
 

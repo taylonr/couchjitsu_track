@@ -28,4 +28,10 @@ defmodule CouchjitsuTrack.StatisticsController do
 
         json conn, %{stats: stats}
     end
+
+    def yearly(conn, _params) do
+        stats = get_statistics(conn.assigns.current_user.id)
+
+        render conn, "yearly.html", stats: stats
+    end
 end
