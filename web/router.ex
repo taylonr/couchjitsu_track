@@ -43,6 +43,7 @@ defmodule CouchjitsuTrack.Router do
     pipe_through :authenticated
 
     get "/", StatisticsController, :index
+    get "/yearly", StatisticsController, :yearly
   end
 
   scope "/activityfeed", CouchjitsuTrack do
