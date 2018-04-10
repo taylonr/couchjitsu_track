@@ -1,8 +1,8 @@
 <h2>Yearly Statistics</h2>
-
-<%= for key <- @stats do %>
-    <p><%= key %></p>
-  <% end %>
+<%= inspect @stats %>
+<%# <%= for key <- @stats do %>
+    <%# <p><%= key %></p> %>
+  <%# <% end %> %> %>
 
 <%# <%= render "statistic_card.html", conn: @conn, stat: @stats.current_month, previous: @stats.previous_month, title: "Current Month", type: "current_month" %>
 
