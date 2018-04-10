@@ -9,6 +9,7 @@ defmodule CouchjitsuTrack.StatisticsQuery do
         years = Enum.uniq_by(stats, fn s -> s.year end)
 
         Enum.map(years, fn year -> get_year(stats, year) end)
+            |> IO.inspect
     end
 
     def get_statistics(user_id, month, year) do
