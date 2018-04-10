@@ -6,8 +6,9 @@ defmodule CouchjitsuTrack.StatisticsQuery do
 
     def get_statistics(user_id) do
         stats = query_statistics(user_id);
-        Enum.group_by(stats, fn s -> s.year end)
-            |> Enum.map(&get_sums/1)
+        years = Enum.uniq_by(stats, fn s -> s.year end)
+
+        Enum.map(years, fn year -> get_year(stats, year) end)
     end
 
     def get_statistics(user_id, month, year) do
