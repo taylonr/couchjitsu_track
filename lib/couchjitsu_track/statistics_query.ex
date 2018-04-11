@@ -12,7 +12,7 @@ defmodule CouchjitsuTrack.StatisticsQuery do
             stats = get_year(stats, u.year)
             %{:year => u.year, :stats => stats}
         end)
-        |> Enum.sort(&(&1.year < &2.year))
+        |> Enum.sort(&(&1.year > &2.year))
     end
 
     def get_statistics(user_id, month, year) do
