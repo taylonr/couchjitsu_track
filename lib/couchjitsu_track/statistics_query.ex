@@ -10,7 +10,7 @@ defmodule CouchjitsuTrack.StatisticsQuery do
 
         Enum.map(unique, fn u ->
             stat = get_year(stats, u.year)
-            stat["year"] = u.year
+            Map.put(stat, :year, u.year)
         end)
     end
 
