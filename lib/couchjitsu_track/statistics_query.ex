@@ -8,8 +8,10 @@ defmodule CouchjitsuTrack.StatisticsQuery do
         stats = query_statistics(user_id);
         unique = Enum.uniq_by(stats, fn s -> s.year end)
 
-        Enum.map(unique, fn u -> get_year(stats, u.year) end)
-            |> IO.inspect
+        Enum.map(unique, fn u ->
+            stat = get_year(stats, u.year)
+            stat["year"] = u.year
+        end)
     end
 
     def get_statistics(user_id, month, year) do
