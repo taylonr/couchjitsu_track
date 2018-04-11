@@ -1,4 +1,4 @@
 <h2>Yearly Statistics</h2>
 <%= for s <- @stats do %>
-<%= render "statistic_card.html", conn: @conn, stat: s, title: s.year, type: "years" %>
+<%= render "statistic_card.html", conn: @conn, stat: s.stats, title: s.year, type: "years" %>
 <% end %>

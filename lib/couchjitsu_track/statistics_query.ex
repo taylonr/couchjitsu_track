@@ -9,8 +9,8 @@ defmodule CouchjitsuTrack.StatisticsQuery do
         unique = Enum.uniq_by(stats, fn s -> s.year end)
 
         Enum.map(unique, fn u ->
-            stat = get_year(stats, u.year)
-            Map.put(stat, :year, u.year)
+            stats = get_year(stats, u.year)
+            %{:year => u.year, :stats => stats}
         end)
     end
 
